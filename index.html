@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous"/>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,300,400|Open+Sans:300,400|Roboto:100,300,400" rel="stylesheet"/>
+    <!--BOOTSTRAP CDN-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="shortcut icon" href="img/logo-head-small.png" type="image/png"/>
+    <!--CUSTOM CSS-->
+    <link rel="stylesheet" href="css/style.css"/>
+    <!--BOOTSTRAP + JQUERY CDN-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!--CUSTOM JS-->
+    <script src="js/main.js"></script>
+    <script src="js/info.js"></script>
+    <script src="js/calculos.js"></script>
+    <script src="js/globals.js"></script>
+    <title>Calculadora - Solar Térmico</title>
+  </head>
+  <body>
+    <header class="header">
+      <!--span Eco.AP Calculator-->
+      <!--.logo--><span class="header-title">Calculadora - Solar Térmico</span>
+      <!--<img src="img/logo.png" alt="logo" class="logo-img"/>-->
+    </header>
+    <main class="main container">
+      <div class="row">
+        <div class="col-md-12 col-sm-12">
+          <div class="main-content">
+            <!--MENU CHOICE-->
+            <div id="menu" style="display:block;" data-id="1" class="step">
+              <div class="dados-titulo"><span>Menu</span></div>
+              <div class="dados-child">
+                <div class="dado menu-choice">
+                  <label for="menu-choice-sel">Utilizar a calculadora para:</label>
+                  <select id="menu-choice-sel" name="menu-choice-sel" class="sel">
+                    <option value="">Seleccionar opção</option>
+                    <option value="0">Aguas Quentes Sanitárias</option>
+                    <option value="1">Piscinas (brevemente)</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <!--Dados-->
+            <div id="dados" data-id="2" class="step">
+              <div class="dados-titulo"><span>Dados</span></div>
+              <div class="dados-child">
+                <div class="dado distrito">
+                  <label for="distrito">Distrito</label>
+                  <select id="distrito" name="distrito" class="sel">
+                    <option value="">Seleccionar opção</option>
+                  </select>
+                </div>
+                <div class="dado latitude">
+                  <label for="latitude">Latitude (aprox.)</label>
+                  <input id="distrito-latitude" type="number" placeholder="0°" class="form-control xInput"/>
+                </div>
+                <div class="dado sis-prod-aqs">
+                  <label for="sis-prod">Sistema de produção de AQS</label>
+                  <select id="sis-prod" name="sis-prod" class="sel">
+                    <option value="">Seleccionar opção</option>
+                  </select>
+                </div>
+                <div class="dado rendimento">
+                  <label for="rend">Rendimento (%)</label>
+                  <select id="rend" name="rend" class="sel">
+                    <option value="">Seleccionar opção</option>
+                    <option value="1">Não conhece</option>
+                    <option value="2">Inserir rendimento</option>
+                  </select>
+                  <input id="iRendMan" name="iRendMan" placeholder="" style="display:none;"/>
+                </div>
+                <!--.dado.cop.hide-cop-rend
+                label(for="cop") COP
+                select#cop.sel(name="cop")
+                    option(value="") Seleccionar opção
+                    option(value="1") Não conhece
+                
+                -->
+                <div class="dado age hide-age">
+                  <label for="age">Idade (aprox.)</label>
+                  <select id="age" name="age" class="sel">
+                    <option value="">Seleccionar opção</option>
+                  </select>
+                </div>
+                <div class="dado custo-unit">
+                  <label for="custo-unit">Custo energético unitário</label>
+                  <input id="custo-unit-input" type="number" placeholder="0€" class="form-control xInput"/>
+                </div>
+                <div class="tabela-diaria">
+                  <table id="tb" class="table table-bordered">
+                    <tbody>
+                      <tr class="titulo_row">
+                        <th colspan="3" class="tituloTH">Utilização diária de águas quentes sanitárias (média representativa do período de maior consumo)</th>
+                        <th class="tituloTH">&nbsp</th>
+                      </tr>
+                      <tr class="textTR">
+                        <td class="select-cell">
+                          <select id="tipo-consumo1" name="tipo-consumo" class="tipo-consumo">
+                            <option value="">Seleccionar opção</option>
+                          </select>
+                        </td>
+                        <td id="tipo-consumo-descricao1" class="in tipo-consumo-descricao"></td>
+                        <td class="in">
+                          <input id="tipo-consumo-value1" type="number" placeholder="0" class="form-control xInput"/>
+                        </td>
+                        <td class="in"> 
+                          <button id="remove" type="button" class="but-dados">Remover</button>
+                        </td>
+                      </tr>
+                      <tr id="add_row" class="textTR">
+                        <td colspan="3" class="in"></td>
+                        <td class="in"> 
+                          <button id="add" type="button" class="but-dados">Adicionar</button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="dado perfil-mensal">
+                  <label for="perfil-mensal">Perfil de utilização mensal</label>
+                  <select id="perfil-mensal" name="perfil-mensal" class="sel">
+                    <option value="">Seleccionar opção</option>
+                  </select>
+                </div>
+                <div class="tabelas table-mensal hide-perfil-mensal">
+                  <table class="table table-bordered">
+                    <tbody>
+                      <tr class="titulo_row">
+                        <th class="tituloTH">Jan</th>
+                        <th class="tituloTH">Fev</th>
+                        <th class="tituloTH">Mar</th>
+                        <th class="tituloTH">Abr</th>
+                        <th class="tituloTH">Mai</th>
+                        <th class="tituloTH">Jun</th>
+                        <th class="tituloTH">Jul</th>
+                        <th class="tituloTH">Ago</th>
+                        <th class="tituloTH">Set</th>
+                        <th class="tituloTH">Out</th>
+                        <th class="tituloTH">Nov</th>
+                        <th class="tituloTH">Dez</th>
+                      </tr>
+                      <tr class="textTR">
+                        <td class="input-table">
+                          <input id="perfil-mensal-input1" type="text" placeholder="0%" class="form-control xInput"/>
+                        </td>
+                        <td class="in">
+                          <input id="perfil-mensal-input2" type="text" placeholder="0%" class="form-control xInput"/>
+                        </td>
+                        <td class="in">
+                          <input id="perfil-mensal-input3" type="text" placeholder="0%" class="form-control xInput"/>
+                        </td>
+                        <td class="in">
+                          <input id="perfil-mensal-input4" type="text" placeholder="0%" class="form-control xInput"/>
+                        </td>
+                        <td class="in">
+                          <input id="perfil-mensal-input5" type="text" placeholder="0%" class="form-control xInput"/>
+                        </td>
+                        <td class="in">
+                          <input id="perfil-mensal-input6" type="text" placeholder="0%" class="form-control xInput"/>
+                        </td>
+                        <td class="in">
+                          <input id="perfil-mensal-input7" type="text" placeholder="0%" class="form-control xInput"/>
+                        </td>
+                        <td class="in">
+                          <input id="perfil-mensal-input8" type="text" placeholder="0%" class="form-control xInput"/>
+                        </td>
+                        <td class="in">
+                          <input id="perfil-mensal-input9" type="text" placeholder="0%" class="form-control xInput"/>
+                        </td>
+                        <td class="in">
+                          <input id="perfil-mensal-input10" type="text" placeholder="0%" class="form-control xInput"/>
+                        </td>
+                        <td class="in">
+                          <input id="perfil-mensal-input11" type="text" placeholder="0%" class="form-control xInput"/>
+                        </td>
+                        <td class="in">
+                          <input id="perfil-mensal-input12" type="text" placeholder="0%" class="form-control xInput"/>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="dado perfil-semanal">
+                  <label for="perfil-semanal">Perfil de utilização semanal</label>
+                  <select id="perfil-semanal" name="perfil-semanal" class="sel">
+                    <option value="">Seleccionar opção</option>
+                  </select>
+                </div>
+                <div class="tabelas table-semanal hide-perfil-semanal">
+                  <table class="table table-bordered">
+                    <tbody>
+                      <tr class="titulo_row">
+                        <th class="tituloTH">2ª</th>
+                        <th class="tituloTH">3ª</th>
+                        <th class="tituloTH">4ª</th>
+                        <th class="tituloTH">5ª</th>
+                        <th class="tituloTH">6ª</th>
+                        <th class="tituloTH">Sáb</th>
+                        <th class="tituloTH">Dom</th>
+                      </tr>
+                      <tr class="textTR">
+                        <td class="in">
+                          <input id="perfil-semanal-input1" type="text" placeholder="0%" class="form-control xInput"/>
+                        </td>
+                        <td class="in">
+                          <input id="perfil-semanal-input2" type="text" placeholder="0%" class="form-control xInput"/>
+                        </td>
+                        <td class="in">
+                          <input id="perfil-semanal-input3" type="text" placeholder="0%" class="form-control xInput"/>
+                        </td>
+                        <td class="in">
+                          <input id="perfil-semanal-input4" type="text" placeholder="0%" class="form-control xInput"/>
+                        </td>
+                        <td class="in">
+                          <input id="perfil-semanal-input5" type="text" placeholder="0%" class="form-control xInput"/>
+                        </td>
+                        <td class="in">
+                          <input id="perfil-semanal-input6" type="text" placeholder="0%" class="form-control xInput"/>
+                        </td>
+                        <td class="in">
+                          <input id="perfil-semanal-input7" type="text" placeholder="0%" class="form-control xInput"/>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div id="dados-2" data-id="3" class="step">
+              <div class="dados-titulo"><span>Dados</span></div>
+              <div class="dados-child">
+                <div class="dado temp-req">
+                  <label for="temp-req">Temperatura requerida (°C)</label>
+                  <input id="temp-req" type="number" placeholder="0 °C" class="form-control xInput"/>
+                </div>
+                <div class="tabelas">
+                  <table class="table table-bordered">
+                    <tbody>
+                      <tr class="textTR">
+                        <td rowspan="2" class="in">Orientação solar</td>
+                        <td class="select-cell">
+                          <select id="orientacao-sel" name="orientacao-sel">
+                            <option value="">Seleccionar opção</option>
+                          </select>
+                        </td>
+                      </tr>
+                      <tr class="textTR">
+                        <td class="input-table">
+                          <input id="orientacao-input" type="text" placeholder="0" class="form-control xInput"/>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="nota-outro-desvio hide-nota">NOTA: Desvio superior a 20° relativamente a Sul influência a rentabilidade energética do sistema solar. </div>
+                <div class="dado inclinacao">
+                  <label for="inclinacao">Inclinação</label>
+                  <input id="inclinacao-input" type="number" value="" placeholder="Valor será introduzindo automaticamente" class="form-control xInput"/>
+                </div>
+              </div>
+            </div>
+            <div id="resumo" data-id="4" class="step">
+              <div class="dados-titulo"><span>Resumo</span></div>
+              <div class="dados-child">
+                <table class="table table-bordered">
+                  <tbody>
+                    <tr class="textTR">
+                      <td class="in">N° de coletores</td>
+                      <td id="n-coletores-resumo" class="center"></td>
+                    </tr>
+                    <tr class="textTR">
+                      <td class="in">Área</td>
+                      <td id="area-resumo" class="center"></td>
+                    </tr>
+                    <tr class="textTR">
+                      <td class="in">Volume de acumulação</td>
+                      <td id="volume-resumo" class="center"></td>
+                    </tr>
+                    <tr class="textTR">
+                      <td class="in">Necessidades energéticas anuais (kWh)</td>
+                      <td id="nec-ener-resumo" class="center"></td>
+                    </tr>
+                    <tr class="textTR">
+                      <td class="in">Energia solar (kWh)</td>
+                      <td id="ener-solar-resumo" class="center"></td>
+                    </tr>
+                    <tr class="textTR">
+                      <td class="in">Energia do sistema de apoio (kWh)</td>
+                      <td id="ener-backup-resumo" class="center"></td>
+                    </tr>
+                    <tr class="textTR">
+                      <td class="in">Excedente no verão</td>
+                      <td id="excedente-resumo" class="center"></td>
+                    </tr>
+                    <tr class="textTR">
+                      <td class="in">Fração solar</td>
+                      <td id="fracao-resumo" class="center"></td>
+                    </tr>
+                    <tr class="titulo_row">
+                      <th colspan="2" class="tituloTH">Custos com energia</th>
+                    </tr>
+                    <tr class="textTR">
+                      <td class="in">Sem sistema solar</td>
+                      <td id="s-sistema-resumo" class="center"></td>
+                    </tr>
+                    <tr class="textTR">
+                      <td class="in">Com sistema solar</td>
+                      <td id="c-sistema-resumo" class="center"></td>
+                    </tr>
+                    <tr class="textTR">
+                      <td class="in">Redução anual</td>
+                      <td id="reduc-anual-resumo" class="center"></td>
+                    </tr>
+                    <tr class="textTR">
+                      <td class="in">Investimento</td>
+                      <td id="investimento-resumo" class="center"></td>
+                    </tr>
+                    <tr class="textTR">
+                      <td class="in">Coletores</td>
+                      <td id="coletores-resumo" class="center"></td>
+                    </tr>
+                    <tr class="textTR">
+                      <td class="in">Depósitos e accesórios</td>
+                      <td id="deposito-resumo" class="center"></td>
+                    </tr>
+                    <tr class="textTR">
+                      <td class="in">Instalação</td>
+                      <td id="instalacao-resumo" class="center"></td>
+                    </tr>
+                    <tr class="textTR">
+                      <td class="in">Operação e manutenção</td>
+                      <td id="operacao-resumo" class="center"></td>
+                    </tr>
+                    <tr class="textTR">
+                      <td class="in">Período de retorno</td>
+                      <td id="periodo-resumo" class="center"></td>
+                    </tr>
+                  </tbody>
+                </table>
+                <!--.dado.coletores-reanalise    
+                label(for="coletores-reanalise") Corrigir n° de coletores
+                input.form-control.xInput#coletores-reanalise(type="number" placeholder="0")
+                
+                
+                
+                
+                
+                
+                
+                -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="but-2">
+            <button type="button" onclick="prevStep()" class="but anterior">Anterior</button>
+            <button type="button" onclick="nextStep()" class="but seguinte">Próximo</button>
+          </div>
+          <!--.teste
+          button.but.seguinte(type="button" onclick="totalNecessidadesEnergiaFunction()") teste
+          
+          -->
+          <div class="end-step step-but">
+            <button type="button" onclick="prevStep()" class="but anterior">Anterior</button>
+            <button id="analise-but" type="button" onclick="totalNecessidadesEnergiaFunction()" class="but end-but">Analisar                            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+    <!--footer
+    .container-fluid
+        .row
+            .col-md-12
+                .partners
+                    a.partner-link(href="http://www.sg.min-economia.pt/")
+                        img.partners-img.rep-port(src="img/footer/rep-port.png", alt="Républica Portuguesa")
+                    
+                    a.partner-link(href="http://www.portugal.gov.pt/pt/ministerios/meco.aspx")
+                        img.partners-img.port-energia(src="img/footer/portugal-energia-direct.png", alt="Portugal Energia")
+                    
+                    a.partner-link(href="http://www.dgeg.pt/")
+                        img.partners-img.dgeg(src="img/footer/dgeg.png", alt="Direcção Geral de Energia e Geologia")
+                    
+                    a.partner-link(href="http://ecoap.pnaee.pt/")
+                        img.partners-img.ee(src="img/footer/Ee.png", alt="EE")
+                    
+                    a.partner-link.prom(href="https://www.adene.pt/")
+                        img.partners-img.adene(src="img/footer/base-adene.png", alt="Adene")
+                    
+                    //a(href="#")
+                    span.conf
+                        //.conf-text Confinaciado por:
+                        img.partners-img.posteur(src="img/footer/posteur.png", alt="Posteur")
+                    
+                    //a(href="#")
+                    img.partners-img.port-2020(src="img/footer/2020.png", alt="2020")
+                    
+                    a.partner-link(href="https://europa.eu/european-union/index_pt")
+                        img.partners-img.ue(src="img/footer/UE.png", alt="UE")
+    
+    
+                .policy
+                    span.policy-link(href="#") © 2015 Eco.AP
+    
+                    a.policy-link(href="http://ecoap.pnaee.pt/ficha-tecnica/") Ficha técnica
+    
+                    a.policy-link(href="https://www.adene.pt/privacidade/") Política de Privacidade
+    -->
+  </body>
+</html>
