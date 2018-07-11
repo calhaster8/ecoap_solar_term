@@ -18,36 +18,32 @@
 
 body {
   font-family: 'Amelia-Basic', sans-serif;
-  background-image: url(../img/fundo/escaravelhos.png), url("../img/fundo.png");
-  background-position: 70% 170px, center;
-  background-size: 450px 450px, cover;
+  background-image: url("../img/fundo.png");
   background-repeat: no-repeat;
   width: 100%;
   height: 100vh; }
-  @media screen and (max-width: 1024px) {
-    body {
-      background-image: url(../img/fundo/escaravelhos.png), url("../img/fundo.png");
-      background-position: 85% 200px, center;
-      background-size: 450px 450px, cover; } }
-  @media screen and (max-width: 768px) {
-    body {
-      background-image: url("../img/fundo.png");
-      background-position: center;
-      background-size: cover; } }
-  @media screen and (max-width: 515px) {
-    body {
-      background-image: url("../img/fundo.png");
-      background-position: center;
-      background-size: cover; } }
+  body::after {
+    content: '';
+    width: 100%;
+    height: 100vh;
+    background-image: url(../img/fundo/escaravelhos.png);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: .2;
+    z-index: -1; }
 
 .header {
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
   align-items: center;
-  padding: 50px 100px; }
+  padding: 50px; }
   @media screen and (max-width: 768px) {
     .header {
-      padding: 50px 100px; } }
+      padding: 50px; } }
   @media screen and (max-width: 515px) {
     .header {
       padding: 50px 0; } }
@@ -64,7 +60,7 @@ body {
   @media screen and (max-width: 768px) {
     .main {
       margin: 0;
-      padding: 0 100px; } }
+      padding: 0 70px; } }
   @media screen and (max-width: 515px) {
     .main {
       margin: 0;
