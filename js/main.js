@@ -7,6 +7,7 @@ $(document).ready(function() {
     buildPerfilSemanal();
     buildTempReq();
     buildDesvios();
+    getSistemasProdAQSValues();
 
     $('#distrito').change(getDistrictValues);
     $('#sis-prod').change(getSistemasProdAQSValues);
@@ -55,32 +56,78 @@ function buildSistemaProdAQS() {
 }
 
 function getSistemasProdAQSValues() {
-    var id = new Number($("#sis-prod").val());
-    $("#custo-unit-input").attr("value", sistemas_prod_aqs[id].custo_unit);
+    var id = $("#sis-prod").val();
 
-    if ($('#sis-prod').val() == 0) {
-        $('.cop').removeClass('hide-cop-rend');
-        $('.rendimento').addClass('hide-cop-rend');
+    if (id != "" && id != undefined && id == 0) {
+        $("#labelRendimento").html("COP");
+        $("#rend").val("");
+        $("#labelIRendman").html("Insira o COP");
+        $("#labelIRendman").hide();
+        $("#iRendMan").hide();
+        $("#iRendMan").val("");
+        $("#iRendMan").removeAttr("disabled");
+        $('#rend').find("option[value='2']").html("Inserir COP");
+    } else if (id != "" && id != undefined && id > 0) {
+        $("#labelRendimento").html("Rendimento (%)");
+        $("#rend").val("");
+        $("#labelIRendman").html("Insira o rendimento");
+        $("#age").val("");
+        $("#labelIRendman").hide();
+        $("#iRendMan").hide();
+        $("#iRendMan").val("");
+        $("#iRendMan").removeAttr("disabled");
+        $('#rend').find("option[value='2']").html("Inserir rendimento");
     } else {
-        $('.cop').addClass('hide-cop-rend');
-        $('.rendimento').removeClass('hide-cop-rend');
+        $("#labelRendimento").html("Rendimento (%) / COP");
+        $("#rend").val("");
+        $("#age").val("");
+        $("#age").hide();
+        $("#labelIRendman").hide();
+        $("#iRendMan").hide();
+        $("#iRendMan").val("");
+        $("#iRendMan").removeAttr("disabled");
+        $('#rend').find("option[value='2']").html("Inserir rendimento");
     }
+
+    if (id != "" && id != undefined && id >= 0) {
+        $('#custo-unit-input').val((sistemas_prod_aqs[id].custo_unit * sistemas_prod_aqs[id].fator_conversao).toFixed(2));
+        // $("#custo-unit-input").attr("value", sistemas_prod_aqs[id].custo_unit);
+        var begin = $("#custo-unit-label")[0].textContent.indexOf("(");
+        var text = $("#custo-unit-label")[0].textContent.substring(0, begin) + " (€/" + sistemas_prod_aqs[id].unidade + ")";
+
+        $("#custo-unit-label")[0].textContent = text;
+    }
+    getCopRendValues();
 }
 
 function getCopRendValues() {
 
+    var idLocal = $('#sis-prod').val();
     var selectedRend = $('#rend').val();
-    if (selectedRend == 2) {
+    if (selectedRend != "" && selectedRend != undefined && selectedRend == 2 && idLocal == 0 && idLocal != "" && idLocal != undefined) {
+        $('#rend').find("option[value='2']").html("Inserir COP");
         $('#iRendMan').show();
-    } else {
+        $('#labelIRendman').show();
+        $('.age').hide();
+        $('#age').val("");
+    } else if (selectedRend != "" && selectedRend != undefined && selectedRend == 2 && idLocal > 0 && idLocal != "" && idLocal != undefined) {
+        $('#rend').find("option[value='2']").html("Inserir rendimento");
+        $('#iRendMan').show();
+        $('#labelIRendman').show();
+        $('.age').hide();
+        $('#age').val("");
+    } else if (selectedRend != "" && selectedRend != undefined && selectedRend == 1) {
         $('#iRendMan').val("");
+        $('.age').show();
+        $('#age').show();
+        $('#age').val("");
         $('#iRendMan').hide();
-    }
-
-    if ($('#cop').val() == 1 || selectedRend == 1) {
-        $('.age').removeClass('hide-age');
+        $('#labelIRendman').hide();
     } else {
-        $('.age').addClass('hide-age');
+        $('#iRendMan').hide();
+        $('#labelIRendman').hide();
+        $('.age').hide();
+        $('#age').val("");
     }
 }
 

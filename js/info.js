@@ -27,7 +27,9 @@ var sistemas_prod_aqs = [
                 nome: "10 a 20 anos",
                 valor: 2.50 //250%
             }
-        ]
+        ],
+        unidade: "kWh",
+        fator_conversao: 1
     },
     {
         nome: "Caldeira (biomassa)",
@@ -45,7 +47,9 @@ var sistemas_prod_aqs = [
                 nome: "10 a 20 anos",
                 valor: 0.6 //60%
             }
-        ]
+        ],
+        unidade: "kg",
+        fator_conversao: 3.61
     },
     {
         nome: "Caldeira (gás natural)",
@@ -63,7 +67,9 @@ var sistemas_prod_aqs = [
                 nome: "10 a 20 anos",
                 valor: 0.83 //83%
             }
-        ]
+        ],
+        unidade: "m3",
+        fator_conversao: 10.53
     },
     {
         nome: "Caldeira (gás propano)",
@@ -81,7 +87,9 @@ var sistemas_prod_aqs = [
                 nome: "10 a 20 anos",
                 valor: 0.83 //83%
             }
-        ]
+        ],
+        unidade: "kg",
+        fator_conversao: 12.96
     },
     {
         nome: "Caldeira (gasóleo)",
@@ -99,7 +107,9 @@ var sistemas_prod_aqs = [
                 nome: "10 a 20 anos",
                 valor: 0.76 //76%
             }
-        ]
+        ],
+        unidade: "litro",
+        fator_conversao: 10.07
     },
     {
         nome: "Esquentador (gás natural)",
@@ -117,7 +127,9 @@ var sistemas_prod_aqs = [
                 nome: "10 a 20 anos",
                 valor: 0.8 //80%
             }
-        ]
+        ],
+        unidade: "m3",
+        fator_conversao: 10.53
     },
     {
         nome: "Esquentador (gás propano)",
@@ -135,7 +147,9 @@ var sistemas_prod_aqs = [
                 nome: "10 a 20 anos",
                 valor: 0.8 //80%
             }
-        ]
+        ],
+        unidade: "kg",
+        fator_conversao: 12.96
     },
     {
         nome: "Termoacumulador elétrico",
@@ -153,7 +167,9 @@ var sistemas_prod_aqs = [
                 nome: "10 a 20 anos",
                 valor: 0.9 //90%
             }
-        ]
+        ],
+        unidade: "kWh",
+        fator_conversao: 1
     }
 ];
 

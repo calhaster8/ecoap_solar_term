@@ -283,36 +283,6 @@ function cenarioF() {
 
 }
 
-function getSistemasProdAQSValues() {
-    var id = $("#sis-prod").val();
-
-    if (id != "" && id != undefined && id >= 0) {
-        $("#custo-unit-input").attr("value", sistemas_prod_aqs[id].custo_unit);
-    }
-}
-
-function getCopRendValues() {
-
-    var selectedRend = $('#rend').val();
-    if (selectedRend == 2) {
-        $('#iRendMan').show();
-        $('#labelIRendman').show();
-
-    } else {
-        $('#iRendMan').val("");
-        $('#iRendMan').hide();
-        $('#labelIRendman').hide();
-    }
-
-    // aqui removi a comparação com o COP usamos só a do rendimento
-    if (selectedRend == 1) {
-        $('.age').removeClass('hide-age');
-    } else {
-        $('.age').addClass('hide-age');
-    }
-}
-
-
 
 function reduction(){
     reducao_mes = [];

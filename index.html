@@ -66,29 +66,23 @@
                   </select>
                 </div>
                 <div class="dado rendimento">
-                  <label for="rend">Rendimento (%)</label>
+                  <label id="labelRendimento" for="rend"></label>
                   <select id="rend" name="rend" class="sel">
                     <option value="">Seleccionar opção</option>
                     <option value="1">Não conhece</option>
                     <option value="2">Inserir rendimento</option>
                   </select>
+                  <label id="labelIRendman" for="iRendMan" style="display:none;">Insira o rendimento</label>
                   <input id="iRendMan" name="iRendMan" placeholder="" style="display:none;"/>
                 </div>
-                <!--.dado.cop.hide-cop-rend
-                label(for="cop") COP
-                select#cop.sel(name="cop")
-                    option(value="") Seleccionar opção
-                    option(value="1") Não conhece
-                
-                -->
-                <div class="dado age hide-age">
+                <div class="dado age">
                   <label for="age">Idade (aprox.)</label>
                   <select id="age" name="age" class="sel">
                     <option value="">Seleccionar opção</option>
                   </select>
                 </div>
                 <div class="dado custo-unit">
-                  <label for="custo-unit">Custo energético unitário</label>
+                  <label id="custo-unit-label" for="custo-unit">Custo energético unitário(€)</label>
                   <input id="custo-unit-input" type="number" placeholder="0€" class="form-control xInput"/>
                 </div>
                 <div class="tabela-diaria">
