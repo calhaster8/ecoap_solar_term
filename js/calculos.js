@@ -39,7 +39,7 @@ function totalNecessidadesEnergiaFunction() {
             }
             perfilVal = (soma/7)/100;
         }
-        necessidades_mes[i] = new Number((calculos * (getCustomizedPerfilMensal(idPerfilMensal, i) * perfilVal) * meses_numero_horas[i].n_dias * (tmpReq - irradiacao_temp_amb_temp_agua[idDistrito].mesI[i].valorTempAgua) * fatores_conversao[0]).toFixed(0));
+        necessidades_mes[i] = calculos * (getCustomizedPerfilMensal(idPerfilMensal, i) * perfilVal) * meses_numero_horas[i].n_dias * (tmpReq - irradiacao_temp_amb_temp_agua[idDistrito].mesI[i].valorTempAgua) * fatores_conversao[0];
         totalNecessidadesEnergia += new Number(necessidades_mes[i]);
 
     }
@@ -62,7 +62,7 @@ function correcaoOrientacao() {
         correcaoOrientacao = 1;
     }
 
-    totalCorrecaoOrientacao = correcaoOrientacao.toFixed(3);
+    totalCorrecaoOrientacao = correcaoOrientacao;
 }
 
 function getCorrecaoInclinacao(latitude, i){
@@ -82,7 +82,7 @@ function energiaSolarCaptada() {
 
     for(i=0; i<meses_numero_horas.length;i++){
         
-        totalEnergiaArray[i] = new Number((((rendimento_otico * perdas[1].valor) - (coeficient_perdas * ((temperatura_utilizacao_alto - (irradiacao_temp_amb_temp_agua[idDistrito].mesI[i].valorTempAmb + irradiacao_temp_amb_temp_agua[idDistrito].mesI[i].valorTempAgua)) / ((getCorrecaoInclinacao(distritoLatitude, i)) * ((totalCorrecaoOrientacao * perdas[2].valor) * irradiacao_temp_amb_temp_agua[idDistrito].mesI[i].valorIrr) * (fatores_conversao[1] * 1000 / meses_numero_horas[i].n_horas_sol))))) * ((getCorrecaoInclinacao(distritoLatitude, i)) * ((totalCorrecaoOrientacao * perdas[2].valor) * irradiacao_temp_amb_temp_agua[idDistrito].mesI[i].valorIrr))) * (1 - perdas[0].valor) * meses_numero_horas[i].n_dias).toFixed(0);
+        totalEnergiaArray[i] = (((rendimento_otico * perdas[1].valor) - (coeficient_perdas * ((temperatura_utilizacao_alto - (irradiacao_temp_amb_temp_agua[idDistrito].mesI[i].valorTempAmb + irradiacao_temp_amb_temp_agua[idDistrito].mesI[i].valorTempAgua)) / ((getCorrecaoInclinacao(distritoLatitude, i)) * ((totalCorrecaoOrientacao * perdas[2].valor) * irradiacao_temp_amb_temp_agua[idDistrito].mesI[i].valorIrr) * (fatores_conversao[1] * 1000 / meses_numero_horas[i].n_horas_sol))))) * ((getCorrecaoInclinacao(distritoLatitude, i)) * ((totalCorrecaoOrientacao * perdas[2].valor) * irradiacao_temp_amb_temp_agua[idDistrito].mesI[i].valorIrr))) * (1 - perdas[0].valor) * meses_numero_horas[i].n_dias;
         totalEnergia += new Number(totalEnergiaArray[i]);
     }
 
@@ -103,7 +103,7 @@ function energiaSolarCaptada() {
 }
 
 function racio() {
-    totalRacio = new Number(media(necessidades_mes)/media(totalEnergiaArray)).toFixed(2);
+    totalRacio = media(necessidades_mes)/media(totalEnergiaArray);
 }
 
 function media(el){
@@ -115,9 +115,7 @@ function media(el){
     }
     return media/5;
 }
-/*function racio() {
-    totalRacio = new Number(total / totalEnergia).toFixed(2);
-}*/
+
 
 function energiaSolarCaptada2() {
     var coletores_reanalise = $('#coletores-reanalise').val();
@@ -128,10 +126,11 @@ function energiaSolarCaptada2() {
     for (i = 0; i < meses_numero_horas.length; i++) { 
 
         if (coletores_reanalise == '' || coletores_reanalise == undefined) {
-            totalEnergiaArray2[i] = totalEnergiaArray[i] * (totalRacio / 2.25).toFixed(0) * 2.25;
+            totalEnergiaArray2[i] = totalEnergiaArray[i] * new Number((totalRacio / 2.25).toFixed(0)) * 2.25;
         } else {
             totalEnergiaArray2[i] = totalEnergiaArray[i] * coletores_reanalise;
         }
+        
         totalEnergia2 += totalEnergiaArray2[i];
     }
 }
@@ -220,38 +219,13 @@ function necessidadesEnergeticaskWh(){
     total_mes_kWh = 0;
 
     for (i = 0; i < meses_numero_horas.length; i++) {
-        necessidades_mes_kWh[i] = new Number(necessidades_mes[i] * fatores_conversao[1]).toFixed(0);
+        necessidades_mes_kWh[i] = necessidades_mes[i] * fatores_conversao[1];
         total_mes_kWh += necessidades_mes_kWh[i];
     }
     
 }
 
 
-/*function cenarioI() {
-    var inputRendimento = $("#rend").val();
-    var sist_aqs = $("#sis-prod").val();
-    var age = $("#age").val();
-    var custosUnit = $("#custo-unit-input").val();
-    var rendCenarioI=0;
-    
-    cenarioI_mes = [];
-    cenarioI_custos = [];
-    total_cenarioI_mes = 0;
-    total_cenarioI_custos = 0;
-
-    if (inputRendimento == 1 && sistemas_prod_aqs[sist_aqs].rendimento[age].nome == idades[age]){
-        rendCenarioI = sistemas_prod_aqs[sist_aqs].rendimento[age].valor;
-    
-        for (i = 0; i < meses_numero_horas.length; i++) {
-            
-            cenarioI_mes[i] = new Number(necessidades_mes_kWh[i] / rendCenarioI).toFixed(0);
-            cenarioI_custos[i] = new Number(cenarioI_mes[i] * custosUnit).toFixed(2);
-            total_cenarioI_mes += new Number(cenarioI_mes[i]);
-            total_cenarioI_custos += new Number(cenarioI_custos[i]);
-        }
-        total_cenarioI_custos = total_cenarioI_custos.toFixed(2);
-    }
-}*/
 function cenarioI() {
     var inputRendimento = ($("#rend").val() == 2) ? $('#iRendMan').val() : $("#rend").val();
     var sist_aqs = $("#sis-prod").val();
@@ -272,42 +246,14 @@ function cenarioI() {
 
     for (i = 0; i < meses_numero_horas.length; i++) {
 
-        cenarioI_mes[i] = new Number(necessidades_mes_kWh[i] / rendCenarioI).toFixed(0);
-        cenarioI_custos[i] = new Number(cenarioI_mes[i] * custosUnit).toFixed(2);
-        total_cenarioI_mes += new Number(cenarioI_mes[i]);
-        total_cenarioI_custos += new Number(cenarioI_custos[i]);
+        cenarioI_mes[i] = necessidades_mes_kWh[i] / rendCenarioI;
+        cenarioI_custos[i] = cenarioI_mes[i] * custosUnit;
+        total_cenarioI_mes += cenarioI_mes[i];
+        total_cenarioI_custos += cenarioI_custos[i];
     }
-    total_cenarioI_custos = total_cenarioI_custos.toFixed(2);
+    total_cenarioI_custos = total_cenarioI_custos;
 }
 
-
-
-
-/*function cenarioF() {    
-
-    var inputRendimento = $("#rend").val();
-    var sist_aqs = $("#sis-prod").val();
-    var age = $("#age").val();
-    var custosUnit = $("#custo-unit-input").val();
-    var rendCenarioF = 0;
-    cenarioF_mes = [];
-    total_cenarioF_mes = 0;
-    cenarioF_custos = [];
-    total_cenarioF_custos = 0;
-
-    if (inputRendimento == 1 && sistemas_prod_aqs[sist_aqs].rendimento[age].nome == idades[age]) {
-        rendCenarioF = sistemas_prod_aqs[sist_aqs].rendimento[age].valor;
-
-        for (i = 0; i < meses_numero_horas.length; i++) {
-
-            cenarioF_mes[i] = new Number(totalEnergiaBackupMes[i]*fatores_conversao[1] / rendCenarioF).toFixed(0);
-            total_cenarioF_mes += new Number(cenarioF_mes[i]);
-            cenarioF_custos[i] = new Number(cenarioF_mes[i] * custosUnit).toFixed(2);
-            total_cenarioF_custos += new Number(cenarioF_custos[i]);
-        }
-        total_cenarioF_custos = total_cenarioF_custos.toFixed(2);
-    }
-}*/
 function cenarioF() {
 
     var inputRendimento = ($("#rend").val() == 2) ? $('#iRendMan').val() : $("#rend").val();
@@ -328,12 +274,12 @@ function cenarioF() {
 
     for (i = 0; i < meses_numero_horas.length; i++) {
 
-        cenarioF_mes[i] = new Number(totalEnergiaBackupMes[i] * fatores_conversao[1] / rendCenarioF).toFixed(0);
-        total_cenarioF_mes += new Number(cenarioF_mes[i]);
-        cenarioF_custos[i] = new Number(cenarioF_mes[i] * custosUnit).toFixed(2);
-        total_cenarioF_custos += new Number(cenarioF_custos[i]);
+        cenarioF_mes[i] = totalEnergiaBackupMes[i] * fatores_conversao[1] / rendCenarioF;
+        total_cenarioF_mes += cenarioF_mes[i];
+        cenarioF_custos[i] = cenarioF_mes[i] * custosUnit;
+        total_cenarioF_custos += cenarioF_custos[i];
     }
-    total_cenarioF_custos = total_cenarioF_custos.toFixed(2);
+    total_cenarioF_custos = total_cenarioF_custos;
 
 }
 
@@ -342,13 +288,7 @@ function getSistemasProdAQSValues() {
 
     if (id != "" && id != undefined && id >= 0) {
         $("#custo-unit-input").attr("value", sistemas_prod_aqs[id].custo_unit);
-        //        $('.cop').removeClass('hide-cop-rend');
-        //        $('.rendimento').addClass('hide-cop-rend');
     }
-    //    else {
-    //        $('.cop').addClass('hide-cop-rend');
-    //        $('.rendimento').removeClass('hide-cop-rend');
-    //    }
 }
 
 function getCopRendValues() {
@@ -382,12 +322,12 @@ function reduction(){
 
     for (i = 0; i < meses_numero_horas.length; i++) {
 
-        reducao_mes[i] = new Number(cenarioI_custos[i]-cenarioF_custos[i]).toFixed(0);
-        total_reducao_mes += new Number(reducao_mes[i]);
-        reducao_percent[i] = new Number(reducao_mes[i] / cenarioI_custos[i] * 100).toFixed(0);
+        reducao_mes[i] = cenarioI_custos[i]-cenarioF_custos[i];
+        total_reducao_mes += reducao_mes[i];
+        reducao_percent[i] = reducao_mes[i] / cenarioI_custos[i];
        
     }
-    total_reduca_percent = (total_reducao_mes/total_cenarioI_custos*100).toFixed(0);
+    total_reduca_percent = total_reducao_mes/total_cenarioI_custos;
 }
 
 
@@ -420,21 +360,21 @@ function resume(){
     //area_colectores = (inputColetores != undefined && !empty(inputColetores)) ? new Number(n_colectores * area_coletor_solar).toFixed(2) : new Number(inputColetores * area_coletor_solar).toFixed(2);
     
     //esta da
-    n_colectores = (inputColetores != undefined && inputColetores != "") ? new Number(inputColetores) : new Number(totalRacio / area_coletor_solar).toFixed(0);
-    area_colectores = (inputColetores == undefined || inputColetores == "") ? new Number(n_colectores * area_coletor_solar).toFixed(2) : new Number(inputColetores * area_coletor_solar).toFixed(2);
+    n_colectores = (inputColetores != undefined && inputColetores != "") ? new Number(inputColetores) : new Number((totalRacio / area_coletor_solar).toFixed(0));
+    area_colectores = (inputColetores == undefined || inputColetores == "") ? new Number((n_colectores*area_coletor_solar)) : new Number((inputColetores*area_coletor_solar));
     
     volume_acumulacao_resume = area_colectores * volume_acumulacao_info;
-    necess_ener_anuais = new Number(total * fatores_conversao[1]).toFixed(0);
-    energia_solar = new Number(totalEnergiaSolar * fatores_conversao[1]).toFixed(0);
-    energia_sist_apoio = new Number(totalEnergiaBackup * fatores_conversao[1]).toFixed(0);
+    necess_ener_anuais = total * fatores_conversao[1];
+    energia_solar = totalEnergiaSolar * fatores_conversao[1];
+    energia_sist_apoio = totalEnergiaBackup * fatores_conversao[1];
 
     //excedente_verao = (max(excedenteSolarPerc) > avisos[0].valor) ? max(excedenteSolarPerc) : "";
     //se o excende de verão for maior do que aviso[0].valor então mostra esta informação no resumo, senão não mostra nada
 
     excedente_verao = (max(totalExcedenteSolarArrayPerc) > avisos[0].valor) ? max(totalExcedenteSolarArrayPerc) : "";
-    excedente_verao_perc = new Number(excedente_verao * 100).toFixed(0);
+    excedente_verao_perc = excedente_verao * 100;
 
-    fracao_solar = new Number(totalEnergiaSolarPerc * 100).toFixed(0);
+    fracao_solar = totalEnergiaSolarPerc * 100;
 
     s_sist_solar = total_cenarioI_custos;
     c_sist_solar = total_cenarioF_custos;
@@ -446,27 +386,27 @@ function resume(){
     
     investimento_resume = colectores+depositos_acessorios+instalacao;
     
-    op_manutencao = new Number(investimento_resume * investimentoI[3].valor_direto).toFixed(2);
+    op_manutencao = investimento_resume * investimentoI[3].valor_direto;
     
-    periodo_retorno = new Number(investimento_resume / reducao_solar).toFixed(1);
+    periodo_retorno = investimento_resume / reducao_solar;
 
-    $('#n-coletores-resumo').html(n_colectores);
-    $('#area-resumo').html(area_colectores + ' m2');
-    $('#volume-resumo').html(volume_acumulacao_resume + ' litros');
-    $('#nec-ener-resumo').html(necess_ener_anuais);
-    $('#ener-solar-resumo').html(energia_solar);
-    $('#ener-backup-resumo').html(energia_sist_apoio);
-    $('#excedente-resumo').html(excedente_verao_perc + '%');
-    $('#fracao-resumo').html(fracao_solar + '%');
-    $('#s-sistema-resumo').html(s_sist_solar + ' €');
-    $('#c-sistema-resumo').html(c_sist_solar + ' €');
-    $('#reduc-anual-resumo').html(reducao_solar + ' €');
-    $('#investimento-resumo').html(investimento_resume + ' €');
-    $('#coletores-resumo').html(colectores + ' €');
-    $('#deposito-resumo').html(depositos_acessorios + ' €');
-    $('#instalacao-resumo').html(instalacao + ' €');
-    $('#operacao-resumo').html(op_manutencao + ' €');
-    $('#periodo-resumo').html(periodo_retorno + ' anos');
+    $('#n-coletores-resumo').html(n_colectores.toFixed(2));
+    $('#area-resumo').html(area_colectores.toFixed(2) + ' m2');
+    $('#volume-resumo').html(volume_acumulacao_resume.toFixed(0) + ' litros');
+    $('#nec-ener-resumo').html(necess_ener_anuais.toFixed(0) + ' kWh');
+    $('#ener-solar-resumo').html(energia_solar.toFixed(0) + ' kWh');
+    $('#ener-backup-resumo').html(energia_sist_apoio.toFixed(0) + ' kWh');
+    $('#excedente-resumo').html(excedente_verao_perc.toFixed(0) + '%');
+    $('#fracao-resumo').html(fracao_solar.toFixed(0) + '%');
+    $('#s-sistema-resumo').html(s_sist_solar.toFixed(2) + ' €');
+    $('#c-sistema-resumo').html(c_sist_solar.toFixed(2) + ' €');
+    $('#reduc-anual-resumo').html(reducao_solar.toFixed(2) + ' €');
+    $('#investimento-resumo').html(investimento_resume.toFixed(2) + ' €');
+    $('#coletores-resumo').html(colectores.toFixed(2) + ' €');
+    $('#deposito-resumo').html(depositos_acessorios.toFixed(2) + ' €');
+    $('#instalacao-resumo').html(instalacao.toFixed(2) + ' €');
+    $('#operacao-resumo').html(op_manutencao.toFixed(2) + ' €');
+    $('#periodo-resumo').html(periodo_retorno.toFixed(1) + ' anos');
 }
 
 function max(calculos) {
@@ -479,16 +419,3 @@ function max(calculos) {
     }
     return max;
 }
-
-
-/*function min(calculos) {
-    var min=0;
-    for (i = 0; i < calculos.length; i++) {
-        if(min==0){
-            min = calculos[i];
-        }else if (calculos[i] < min) {
-            min = calculos[i];
-        }
-    }
-    return min;
-}*/

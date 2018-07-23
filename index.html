@@ -146,40 +146,40 @@
                       </tr>
                       <tr class="textTR">
                         <td class="input-table">
-                          <input id="perfil-mensal-input1" type="text" placeholder="0%" class="form-control xInput"/>
+                          <input id="perfil-mensal-input1" type="number" placeholder="0%" class="form-control xInput"/>
                         </td>
                         <td class="in">
-                          <input id="perfil-mensal-input2" type="text" placeholder="0%" class="form-control xInput"/>
+                          <input id="perfil-mensal-input2" type="number" placeholder="0%" class="form-control xInput"/>
                         </td>
                         <td class="in">
-                          <input id="perfil-mensal-input3" type="text" placeholder="0%" class="form-control xInput"/>
+                          <input id="perfil-mensal-input3" type="number" placeholder="0%" class="form-control xInput"/>
                         </td>
                         <td class="in">
-                          <input id="perfil-mensal-input4" type="text" placeholder="0%" class="form-control xInput"/>
+                          <input id="perfil-mensal-input4" type="number" placeholder="0%" class="form-control xInput"/>
                         </td>
                         <td class="in">
-                          <input id="perfil-mensal-input5" type="text" placeholder="0%" class="form-control xInput"/>
+                          <input id="perfil-mensal-input5" type="number" placeholder="0%" class="form-control xInput"/>
                         </td>
                         <td class="in">
-                          <input id="perfil-mensal-input6" type="text" placeholder="0%" class="form-control xInput"/>
+                          <input id="perfil-mensal-input6" type="number" placeholder="0%" class="form-control xInput"/>
                         </td>
                         <td class="in">
-                          <input id="perfil-mensal-input7" type="text" placeholder="0%" class="form-control xInput"/>
+                          <input id="perfil-mensal-input7" type="number" placeholder="0%" class="form-control xInput"/>
                         </td>
                         <td class="in">
-                          <input id="perfil-mensal-input8" type="text" placeholder="0%" class="form-control xInput"/>
+                          <input id="perfil-mensal-input8" type="number" placeholder="0%" class="form-control xInput"/>
                         </td>
                         <td class="in">
-                          <input id="perfil-mensal-input9" type="text" placeholder="0%" class="form-control xInput"/>
+                          <input id="perfil-mensal-input9" type="number" placeholder="0%" class="form-control xInput"/>
                         </td>
                         <td class="in">
-                          <input id="perfil-mensal-input10" type="text" placeholder="0%" class="form-control xInput"/>
+                          <input id="perfil-mensal-input10" type="number" placeholder="0%" class="form-control xInput"/>
                         </td>
                         <td class="in">
-                          <input id="perfil-mensal-input11" type="text" placeholder="0%" class="form-control xInput"/>
+                          <input id="perfil-mensal-input11" type="number" placeholder="0%" class="form-control xInput"/>
                         </td>
                         <td class="in">
-                          <input id="perfil-mensal-input12" type="text" placeholder="0%" class="form-control xInput"/>
+                          <input id="perfil-mensal-input12" type="number" placeholder="0%" class="form-control xInput"/>
                         </td>
                       </tr>
                     </tbody>
@@ -205,25 +205,25 @@
                       </tr>
                       <tr class="textTR">
                         <td class="in">
-                          <input id="perfil-semanal-input1" type="text" placeholder="0%" class="form-control xInput"/>
+                          <input id="perfil-semanal-input1" type="number" placeholder="0%" class="form-control xInput"/>
                         </td>
                         <td class="in">
-                          <input id="perfil-semanal-input2" type="text" placeholder="0%" class="form-control xInput"/>
+                          <input id="perfil-semanal-input2" type="number" placeholder="0%" class="form-control xInput"/>
                         </td>
                         <td class="in">
-                          <input id="perfil-semanal-input3" type="text" placeholder="0%" class="form-control xInput"/>
+                          <input id="perfil-semanal-input3" type="number" placeholder="0%" class="form-control xInput"/>
                         </td>
                         <td class="in">
-                          <input id="perfil-semanal-input4" type="text" placeholder="0%" class="form-control xInput"/>
+                          <input id="perfil-semanal-input4" type="number" placeholder="0%" class="form-control xInput"/>
                         </td>
                         <td class="in">
-                          <input id="perfil-semanal-input5" type="text" placeholder="0%" class="form-control xInput"/>
+                          <input id="perfil-semanal-input5" type="number" placeholder="0%" class="form-control xInput"/>
                         </td>
                         <td class="in">
-                          <input id="perfil-semanal-input6" type="text" placeholder="0%" class="form-control xInput"/>
+                          <input id="perfil-semanal-input6" type="number" placeholder="0%" class="form-control xInput"/>
                         </td>
                         <td class="in">
-                          <input id="perfil-semanal-input7" type="text" placeholder="0%" class="form-control xInput"/>
+                          <input id="perfil-semanal-input7" type="number" placeholder="0%" class="form-control xInput"/>
                         </td>
                       </tr>
                     </tbody>
@@ -251,7 +251,7 @@
                       </tr>
                       <tr class="textTR">
                         <td class="input-table">
-                          <input id="orientacao-input" type="text" placeholder="0" class="form-control xInput"/>
+                          <input id="orientacao-input" type="number" placeholder="0" class="form-control xInput"/>
                         </td>
                       </tr>
                     </tbody>
@@ -342,17 +342,12 @@
                     </tr>
                   </tbody>
                 </table>
-                <!--.dado.coletores-reanalise    
-                label(for="coletores-reanalise") Corrigir n° de coletores
-                input.form-control.xInput#coletores-reanalise(type="number" placeholder="0")
-                
-                
-                
-                
-                
-                
-                
-                -->
+                  
+                <div class="dado coletores-reanalise">
+                    <label for="coletores-reanalise">Corrigir n° de coletores</label>
+                    <input id="coletores-reanalise" type="number" placeholder="0" class="form-control xInput"/>
+                </div>
+
               </div>
             </div>
           </div>
@@ -370,7 +365,9 @@
           -->
           <div class="end-step step-but">
             <button type="button" onclick="prevStep()" class="but anterior">Anterior</button>
-            <button id="analise-but" type="button" onclick="totalNecessidadesEnergiaFunction()" class="but end-but">Analisar                            </button>
+            <button id="analise-but" type="button" onclick="totalNecessidadesEnergiaFunction()" class="but end-but">Analisar</button>
+            <button id="reload-but" type="button" class="but reload-but" style="display:none;">Voltar ao início</button>
+            <button id="reanalise-but" type="button" class="but reload-but" style="display:none;">Reanalisar</button>
           </div>
         </div>
       </div>

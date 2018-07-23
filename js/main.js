@@ -26,6 +26,15 @@ $(document).ready(function() {
         }
     });
     
+    
+    $("#reanalise-but").click(function(){
+        totalNecessidadesEnergiaFunction();
+    });
+    
+    $('#reload-but').click(function(){
+        location.reload();
+    });
+    
 });
 
 function buildDistrito() {
@@ -182,45 +191,6 @@ function getInclinacao() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // BUTTONS STEPS
 function nextStep() {
     var id = $('.step:visible').data('id');
@@ -245,7 +215,10 @@ function nextStep() {
             $('.end-step').show();
         }
 
-        if (nextId == 4) {
+        if (nextId == 4 || nextId == 5) {            
+            $('[data-id="' + id + '"]').show();           
+            $('#reanalise-but').show();
+            $('#reload-but').show();
             $('.end-but').hide();
         }
     }
@@ -269,7 +242,9 @@ function prevStep() {
     }
 
     if (prevId == 3) {
-        $('.but-2').hide();
+        $('.but-2').hide();        
+        $('#reanalise-but').hide();
+        $('#reload-but').hide();
         $('.end-step').show();
         $('.end-but').show();
     }
