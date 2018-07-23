@@ -505,7 +505,9 @@ body {
     .end-step .but:hover {
       background-color: #67C8FF; }
   .but-2 button#analise-but,
-  .end-step button#analise-but {
+  .but-2 button#reanalise-but,
+  .end-step button#analise-but,
+  .end-step button#reanalise-but {
     float: right; }
   .but-2 .anterior,
   .end-step .anterior {
