@@ -26,6 +26,16 @@ $(document).ready(function() {
             $(this).removeAttr("style");
         }
     });
+
+    $('#perfil-semanal').change(function() {
+        var idLocal = $('#perfil-semanal').val();
+        
+        if(idLocal == 0 && idLocal != undefined && idLocal != '') {
+            $('#perfil-semanal').css('width', '56%');
+        } else {
+            $('#perfil-semanal').css('width', '52%');
+        }
+    });
     
     
     $("#reanalise-but").click(function(){
