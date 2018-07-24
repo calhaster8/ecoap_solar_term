@@ -273,7 +273,8 @@ function nextStep() {
         }
 
         if (nextId == 4 || nextId == 5) {            
-            $('[data-id="' + id + '"]').show();           
+            $('[data-id="' + id + '"]').hide();
+            $('[data-id="' + nextId + '"]').show();          
             $('#reanalise-but').show();
             $('#reload-but').show();
             $('.end-but').hide();

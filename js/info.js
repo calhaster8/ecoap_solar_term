@@ -471,7 +471,7 @@ var perfil_semanal = [
         consumo: 0.8 //80%
     },
     {
-        nome: "Consumo similar em todos os dias",
+        nome: "Consumo similar em todos os dias da semana",
         valor: 1, //100%
         consumo: 0.8 //80%
     },

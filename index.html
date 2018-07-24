@@ -83,7 +83,7 @@
                 </div>
                 <div class="dado custo-unit">
                   <label id="custo-unit-label" for="custo-unit">Custo energético unitário(€)</label>
-                  <input id="custo-unit-input" type="number" placeholder="0€" class="form-control xInput"/>
+                  <input id="custo-unit-input" type="number" placeholder="0€" class="form-control xInput" min="0" step="0.01"/>
                 </div>
                 <div class="tabela-diaria">
                   <table id="tb" class="table table-bordered">
@@ -140,40 +140,40 @@
                       </tr>
                       <tr class="textTR">
                         <td class="input-table">
-                          <input id="perfil-mensal-input1" type="number" placeholder="0%" class="form-control xInput"/>
+                          <input id="perfil-mensal-input1" type="number" placeholder="0%" class="form-control xInput" min="0"/>
                         </td>
                         <td class="in">
-                          <input id="perfil-mensal-input2" type="number" placeholder="0%" class="form-control xInput"/>
+                          <input id="perfil-mensal-input2" type="number" placeholder="0%" class="form-control xInput" min="0"/>
                         </td>
                         <td class="in">
-                          <input id="perfil-mensal-input3" type="number" placeholder="0%" class="form-control xInput"/>
+                          <input id="perfil-mensal-input3" type="number" placeholder="0%" class="form-control xInput" min="0"/>
                         </td>
                         <td class="in">
-                          <input id="perfil-mensal-input4" type="number" placeholder="0%" class="form-control xInput"/>
+                          <input id="perfil-mensal-input4" type="number" placeholder="0%" class="form-control xInput" min="0"/>
                         </td>
                         <td class="in">
-                          <input id="perfil-mensal-input5" type="number" placeholder="0%" class="form-control xInput"/>
+                          <input id="perfil-mensal-input5" type="number" placeholder="0%" class="form-control xInput" min="0"/>
                         </td>
                         <td class="in">
-                          <input id="perfil-mensal-input6" type="number" placeholder="0%" class="form-control xInput"/>
+                          <input id="perfil-mensal-input6" type="number" placeholder="0%" class="form-control xInput" min="0"/>
                         </td>
                         <td class="in">
-                          <input id="perfil-mensal-input7" type="number" placeholder="0%" class="form-control xInput"/>
+                          <input id="perfil-mensal-input7" type="number" placeholder="0%" class="form-control xInput" min="0"/>
                         </td>
                         <td class="in">
-                          <input id="perfil-mensal-input8" type="number" placeholder="0%" class="form-control xInput"/>
+                          <input id="perfil-mensal-input8" type="number" placeholder="0%" class="form-control xInput" min="0"/>
                         </td>
                         <td class="in">
-                          <input id="perfil-mensal-input9" type="number" placeholder="0%" class="form-control xInput"/>
+                          <input id="perfil-mensal-input9" type="number" placeholder="0%" class="form-control xInput" min="0"/>
                         </td>
                         <td class="in">
-                          <input id="perfil-mensal-input10" type="number" placeholder="0%" class="form-control xInput"/>
+                          <input id="perfil-mensal-input10" type="number" placeholder="0%" class="form-control xInput" min="0"/>
                         </td>
                         <td class="in">
-                          <input id="perfil-mensal-input11" type="number" placeholder="0%" class="form-control xInput"/>
+                          <input id="perfil-mensal-input11" type="number" placeholder="0%" class="form-control xInput" min="0"/>
                         </td>
                         <td class="in">
-                          <input id="perfil-mensal-input12" type="number" placeholder="0%" class="form-control xInput"/>
+                          <input id="perfil-mensal-input12" type="number" placeholder="0%" class="form-control xInput" min="0"/>
                         </td>
                       </tr>
                     </tbody>
@@ -199,25 +199,25 @@
                       </tr>
                       <tr class="textTR">
                         <td class="in">
-                          <input id="perfil-semanal-input1" type="number" placeholder="0%" class="form-control xInput"/>
+                          <input id="perfil-semanal-input1" type="number" placeholder="0%" class="form-control xInput" min="0"/>
                         </td>
                         <td class="in">
-                          <input id="perfil-semanal-input2" type="number" placeholder="0%" class="form-control xInput"/>
+                          <input id="perfil-semanal-input2" type="number" placeholder="0%" class="form-control xInput" min="0"/>
                         </td>
                         <td class="in">
-                          <input id="perfil-semanal-input3" type="number" placeholder="0%" class="form-control xInput"/>
+                          <input id="perfil-semanal-input3" type="number" placeholder="0%" class="form-control xInput" min="0"/>
                         </td>
                         <td class="in">
-                          <input id="perfil-semanal-input4" type="number" placeholder="0%" class="form-control xInput"/>
+                          <input id="perfil-semanal-input4" type="number" placeholder="0%" class="form-control xInput" min="0"/>
                         </td>
                         <td class="in">
-                          <input id="perfil-semanal-input5" type="number" placeholder="0%" class="form-control xInput"/>
+                          <input id="perfil-semanal-input5" type="number" placeholder="0%" class="form-control xInput" min="0"/>
                         </td>
                         <td class="in">
-                          <input id="perfil-semanal-input6" type="number" placeholder="0%" class="form-control xInput"/>
+                          <input id="perfil-semanal-input6" type="number" placeholder="0%" class="form-control xInput" min="0"/>
                         </td>
                         <td class="in">
-                          <input id="perfil-semanal-input7" type="number" placeholder="0%" class="form-control xInput"/>
+                          <input id="perfil-semanal-input7" type="number" placeholder="0%" class="form-control xInput" min="0"/>
                         </td>
                       </tr>
                     </tbody>
@@ -231,6 +231,7 @@
                 <div class="dado temp-req">
                   <label for="temp-req">Temperatura requerida (°C)</label>
                   <input id="temp-req" type="number" placeholder="0 °C" class="form-control xInput"/>
+                  <span class="pop-temp">*Temperatura de produção</span>
                 </div>
                 <div class="tabelas">
                   <table class="table table-bordered">
@@ -255,6 +256,7 @@
                 <div class="dado inclinacao">
                   <label for="inclinacao">Inclinação</label>
                   <input id="inclinacao-input" type="number" value="" placeholder="Valor será introduzindo automaticamente" class="form-control xInput"/>
+                  <span class="pop-inclinacao">*Esta inclinação depende da latitude</span>
                 </div>
               </div>
             </div>
@@ -315,16 +317,16 @@
                       <td id="investimento-resumo" class="center"></td>
                     </tr>
                     <tr class="textTR">
-                      <td class="in">Coletores</td>
-                      <td id="coletores-resumo" class="center"></td>
+                      <td class="in sub">Coletores</td>
+                      <td id="coletores-resumo" class="center sub-val"></td>
                     </tr>
                     <tr class="textTR">
-                      <td class="in">Depósitos e accesórios</td>
-                      <td id="deposito-resumo" class="center"></td>
+                      <td class="in sub">Depósitos e accesórios</td>
+                      <td id="deposito-resumo" class="center sub-val"></td>
                     </tr>
                     <tr class="textTR">
-                      <td class="in">Instalação</td>
-                      <td id="instalacao-resumo" class="center"></td>
+                      <td class="in sub">Instalação</td>
+                      <td id="instalacao-resumo" class="center sub-val"></td>
                     </tr>
                     <tr class="textTR">
                       <td class="in">Operação e manutenção</td>
@@ -336,7 +338,10 @@
                     </tr>
                   </tbody>
                 </table>
-                  
+                
+                <span class="area-note"></span>
+                <span class="excendente-note"></span>
+              
                 <div class="dado coletores-reanalise">
                     <label for="coletores-reanalise">Corrigir n° de coletores</label>
                     <input id="coletores-reanalise" type="number" placeholder="0" class="form-control xInput"/>

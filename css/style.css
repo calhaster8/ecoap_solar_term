@@ -143,6 +143,14 @@ body {
         background-color: #0099cc;
         background-image: none;
         color: #fff; }
+      .main .main-content .dados-child .dado .pop-temp {
+        color: #0099cc;
+        font-size: .8em;
+        margin-left: 10px; }
+      .main .main-content .dados-child .dado .pop-inclinacao {
+        color: #0099cc;
+        font-size: .8em;
+        margin-left: 10px; }
     .main .main-content .dados-child .hide-cop-rend {
       display: none; }
     .main .main-content .dados-child .hide-age {
@@ -155,6 +163,12 @@ body {
       display: none; }
     .main .main-content .dados-child .nota-outro-desvio {
       color: red; }
+    .main .main-content .dados-child .area-note {
+      color: red;
+      font-size: 1em; }
+    .main .main-content .dados-child .excedente-note {
+      color: red;
+      font-size: 1em; }
     .main .main-content .dados-child .tabela-diaria table {
       background-color: rgba(242, 242, 242, 0); }
       .main .main-content .dados-child .tabela-diaria table tbody .titulo_row {
@@ -480,6 +494,15 @@ body {
         .main .main-content #resumo table tbody tr td.center .xInput:-moz-placeholder,
         .main .main-content #resumo table tbody .textTR td.center .xInput:-moz-placeholder {
           color: #DCDCDC; }
+      .main .main-content #resumo table tbody tr td.sub,
+      .main .main-content #resumo table tbody .textTR td.sub {
+        background-color: #eeeeff;
+        padding-left: 30px;
+        display: none; }
+      .main .main-content #resumo table tbody tr td.sub-val,
+      .main .main-content #resumo table tbody .textTR td.sub-val {
+        background-color: #eeeeff;
+        display: none; }
   .main .main-content .step {
     display: none; }
 

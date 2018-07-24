@@ -377,6 +377,22 @@ function resume(){
     $('#instalacao-resumo').html(instalacao.toFixed(2) + ' €');
     $('#operacao-resumo').html(op_manutencao.toFixed(2) + ' €');
     $('#periodo-resumo').html(periodo_retorno.toFixed(1) + ' anos');
+
+    if (area_colectores > avisos[1].valor) {
+        $('.area-note').html(avisos[1].mensagem);
+        $('.area-note').show();
+    } else {
+        $('.area-note').html('');
+        $('.area-note').hide();
+    }
+
+    if (excedente_verao_perc > 0 && excedente_verao_perc != undefined && excedente_verao_perc != '') {
+        $('.excedente-note').html(avisos[0].mensagem);
+        $('.excedente-note').show();
+    } else {
+        $('.excedente-note').html('');
+        $('.excedente-note').hide();
+    }
 }
 
 function max(calculos) {
