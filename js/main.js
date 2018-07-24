@@ -76,6 +76,7 @@ function getSistemasProdAQSValues() {
         $("#iRendMan").hide();
         $("#iRendMan").val("");
         $("#iRendMan").removeAttr("disabled");
+        $("#iRendMan").attr("placeholder", "0");
         $('#rend').find("option[value='2']").html("Inserir COP");
     } else if (id != "" && id != undefined && id > 0) {
         $("#labelRendimento").html("Rendimento (%)");
@@ -86,6 +87,7 @@ function getSistemasProdAQSValues() {
         $("#iRendMan").hide();
         $("#iRendMan").val("");
         $("#iRendMan").removeAttr("disabled");
+        $("#iRendMan").attr("placeholder", "0%");
         $('#rend').find("option[value='2']").html("Inserir rendimento");
     } else {
         $("#labelRendimento").html("Rendimento (%) / COP");
