@@ -266,15 +266,16 @@ function cenarioF() {
     cenarioF_custos = [];
     total_cenarioF_custos = 0;
 
-    if (inputRendimento == 1 && sistemas_prod_aqs[sist_aqs].rendimento[age].nome == idades[age]) {
+    /*if (inputRendimento == 1 && sistemas_prod_aqs[sist_aqs].rendimento[age].nome == idades[age]) {
         rendCenarioF = sistemas_prod_aqs[sist_aqs].rendimento[age].valor;
     } else {
         rendCenarioF = inputRendimento/100;
-    }
+    }*/
 
     for (i = 0; i < meses_numero_horas.length; i++) {
 
-        cenarioF_mes[i] = totalEnergiaBackupMes[i] * fatores_conversao[1] / rendCenarioF;
+        //cenarioF_mes[i] = totalEnergiaBackupMes[i] * fatores_conversao[1] / rendCenarioF;
+        cenarioF_mes[i] = totalEnergiaBackupMes[i] * fatores_conversao[1];
         total_cenarioF_mes += cenarioF_mes[i];
         cenarioF_custos[i] = cenarioF_mes[i] * custosUnit;
         total_cenarioF_custos += cenarioF_custos[i];
