@@ -128,7 +128,7 @@ function energiaSolarCaptada2() {
         if (coletores_reanalise == '' || coletores_reanalise == undefined) {
             totalEnergiaArray2[i] = totalEnergiaArray[i] * new Number((totalRacio / 2.25).toFixed(0)) * 2.25;
         } else {
-            totalEnergiaArray2[i] = totalEnergiaArray[i] * coletores_reanalise;
+            totalEnergiaArray2[i] = totalEnergiaArray[i] * coletores_reanalise*2.25;
         }
         
         totalEnergia2 += totalEnergiaArray2[i];
@@ -163,15 +163,26 @@ function energiaSolarUtilizadaPercent() {
 }
 
 function energiaBackup() {
+    
+    var inputRendimento = ($("#rend").val() == 2) ? $('#iRendMan').val() : $("#rend").val();
+    var sist_aqs = $("#sis-prod").val();
+    var age = $("#age").val();
+    var rendFinal = 0;
 
     totalEnergiaBackupMes = [];
     totalEnergiaBackup = 0;
+
+     if (inputRendimento == 1 && sistemas_prod_aqs[sist_aqs].rendimento[age].nome == idades[age]) {
+        rendFinal = sistemas_prod_aqs[sist_aqs].rendimento[age].valor;
+    } else {
+        rendFinal = inputRendimento/100;
+    }
 
     for (i = 0; i < meses_numero_horas.length; i++) {
         if (necessidades_mes[i]-totalEnergiaArray2[i] < 0) {
             totalEnergiaBackupMes[i] = 0;
         } else {
-            totalEnergiaBackupMes[i] = necessidades_mes[i] - totalEnergiaArray2[i];
+            totalEnergiaBackupMes[i] = (necessidades_mes[i] - totalEnergiaArray2[i])/rendFinal;
         }
 
         totalEnergiaBackup += totalEnergiaBackupMes[i];
@@ -256,21 +267,12 @@ function cenarioI() {
 
 function cenarioF() {
 
-    var inputRendimento = ($("#rend").val() == 2) ? $('#iRendMan').val() : $("#rend").val();
-    var sist_aqs = $("#sis-prod").val();
-    var age = $("#age").val();
     var custosUnit = $("#custo-unit-input").val();
-    var rendCenarioF = 0;
     cenarioF_mes = [];
     total_cenarioF_mes = 0;
     cenarioF_custos = [];
     total_cenarioF_custos = 0;
-
-    /*if (inputRendimento == 1 && sistemas_prod_aqs[sist_aqs].rendimento[age].nome == idades[age]) {
-        rendCenarioF = sistemas_prod_aqs[sist_aqs].rendimento[age].valor;
-    } else {
-        rendCenarioF = inputRendimento/100;
-    }*/
+   
 
     for (i = 0; i < meses_numero_horas.length; i++) {
 
@@ -334,7 +336,7 @@ function resume(){
     n_colectores = (inputColetores != undefined && inputColetores != "") ? new Number(inputColetores) : new Number((totalRacio / area_coletor_solar).toFixed(0));
     area_colectores = (inputColetores == undefined || inputColetores == "") ? new Number((n_colectores*area_coletor_solar)) : new Number((inputColetores*area_coletor_solar));
     
-    volume_acumulacao_resume = area_colectores * volume_acumulacao_info;
+    volume_acumulacao_resume = area_colectores<8 ? arred(area_colectores * volume_acumulacao_info,-1) : arred(area_colectores * volume_acumulacao_info,-2);
     necess_ener_anuais = total * fatores_conversao[1];
     energia_solar = totalEnergiaSolar * fatores_conversao[1];
     energia_sist_apoio = totalEnergiaBackup * fatores_conversao[1];
@@ -405,4 +407,20 @@ function max(calculos) {
         }
     }
     return max;
+}
+
+function arred(valorArrendondar, comoArredondar) {
+    var valor = 0;
+
+    if (comoArredondar == (-1)) {
+        valor = Math.round(valorArrendondar / 10) * 10;
+    } else if (comoArredondar == (-2)) {
+        valor = Math.round(valorArrendondar / 100) * 100;
+    } else if (comoArredondar == (-3)) {
+        valor = Math.round(valorArrendondar / 1000) * 1000;
+    } else if (comoArredondar == (-4)) {
+        valor = Math.round(valorArrendondar / 10000) * 10000;
+    }
+
+    return valor;
 }

@@ -33,7 +33,7 @@ var sistemas_prod_aqs = [
     },
     {
         nome: "Caldeira (biomassa)",
-        custo_unit: 0.05, //euros
+        custo_unit: 0.043, //euros
         rendimento: [
             {
                 nome: "< 10 anos",
@@ -49,7 +49,7 @@ var sistemas_prod_aqs = [
             }
         ],
         unidade: "kg",
-        fator_conversao: 3.61
+        fator_conversao: 4
     },
     {
         nome: "Caldeira (gás natural)",
@@ -133,7 +133,7 @@ var sistemas_prod_aqs = [
     },
     {
         nome: "Esquentador (gás propano)",
-        custo_unit: 0.15, //euros
+        custo_unit: 0.12, //euros
         rendimento: [
             {
                 nome: "< 10 anos",

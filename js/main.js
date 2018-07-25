@@ -119,13 +119,13 @@ function getCopRendValues() {
     if (selectedRend != "" && selectedRend != undefined && selectedRend == 2 && idLocal == 0 && idLocal != "" && idLocal != undefined) {
         $('#rend').find("option[value='2']").html("Inserir COP");
         $('#iRendMan').show();
-        $('#labelIRendman').show();
+        //$('#labelIRendman').show();
         $('.age').hide();
         $('#age').val("");
     } else if (selectedRend != "" && selectedRend != undefined && selectedRend == 2 && idLocal > 0 && idLocal != "" && idLocal != undefined) {
         $('#rend').find("option[value='2']").html("Inserir rendimento");
         $('#iRendMan').show();
-        $('#labelIRendman').show();
+        //$('#labelIRendman').show();
         $('.age').hide();
         $('#age').val("");
     } else if (selectedRend != "" && selectedRend != undefined && selectedRend == 1) {
@@ -274,9 +274,10 @@ function nextStep() {
             $('.end-step').show();
         }
 
-        if (nextId == 4 || nextId == 5) {            
-            $('[data-id="' + id + '"]').hide();
-            $('[data-id="' + nextId + '"]').show();          
+        if (nextId == 4 || nextId == 5) {   
+            if(nextId == 5 && id==4){
+                $('[data-id="' + id + '"]').show();
+            }          
             $('#reanalise-but').show();
             $('#reload-but').show();
             $('.end-but').hide();
