@@ -165,7 +165,7 @@ function energiaSolarUtilizadaPercent() {
 function energiaBackup() {
     
     var inputRendimento = ($("#rend").val() == 2) ? $('#iRendMan').val() : $("#rend").val();
-    var sist_aqs = $("#sis-prod").val();
+    var sist_aqs = $("#sis_prod").val();
     var age = $("#age").val();
     var rendFinal = 0;
 
@@ -239,7 +239,7 @@ function necessidadesEnergeticaskWh(){
 
 function cenarioI() {
     var inputRendimento = ($("#rend").val() == 2) ? $('#iRendMan').val() : $("#rend").val();
-    var sist_aqs = $("#sis-prod").val();
+    var sist_aqs = $("#sis_prod").val();
     var age = $("#age").val();
     var custosUnit = $("#custo-unit-input").val();
     var rendCenarioI = 0;
@@ -336,7 +336,7 @@ function resume(){
     n_colectores = (inputColetores != undefined && inputColetores != "") ? new Number(inputColetores) : new Number((totalRacio / area_coletor_solar).toFixed(0));
     area_colectores = (inputColetores == undefined || inputColetores == "") ? new Number((n_colectores*area_coletor_solar)) : new Number((inputColetores*area_coletor_solar));
     
-    volume_acumulacao_resume = area_colectores<8 ? arred(area_colectores * volume_acumulacao_info,-1) : arred(area_colectores * volume_acumulacao_info,-2);
+    volume_acumulacao_resume = area_colectores<8 ? (arred(area_colectores * volume_acumulacao_info,-1) + 10) : arred(area_colectores * volume_acumulacao_info,-2);
     necess_ener_anuais = total * fatores_conversao[1];
     energia_solar = totalEnergiaSolar * fatores_conversao[1];
     energia_sist_apoio = totalEnergiaBackup * fatores_conversao[1];
@@ -363,22 +363,22 @@ function resume(){
     
     periodo_retorno = investimento_resume / reducao_solar;
 
-    $('#n-coletores-resumo').html(n_colectores.toFixed(2));
-    $('#area-resumo').html(area_colectores.toFixed(2) + ' m2');
+    $('#n-coletores-resumo').html(n_colectores.toFixed(0));
+    $('#area-resumo').html(area_colectores.toFixed(1) + ' m2');
     $('#volume-resumo').html(volume_acumulacao_resume.toFixed(0) + ' litros');
     $('#nec-ener-resumo').html(necess_ener_anuais.toFixed(0) + ' kWh');
     $('#ener-solar-resumo').html(energia_solar.toFixed(0) + ' kWh');
     $('#ener-backup-resumo').html(energia_sist_apoio.toFixed(0) + ' kWh');
     $('#excedente-resumo').html(excedente_verao_perc.toFixed(0) + '%');
     $('#fracao-resumo').html(fracao_solar.toFixed(0) + '%');
-    $('#s-sistema-resumo').html(s_sist_solar.toFixed(2) + ' €');
-    $('#c-sistema-resumo').html(c_sist_solar.toFixed(2) + ' €');
-    $('#reduc-anual-resumo').html(reducao_solar.toFixed(2) + ' €');
-    $('#investimento-resumo').html(investimento_resume.toFixed(2) + ' €');
-    $('#coletores-resumo').html(colectores.toFixed(2) + ' €');
-    $('#deposito-resumo').html(depositos_acessorios.toFixed(2) + ' €');
-    $('#instalacao-resumo').html(instalacao.toFixed(2) + ' €');
-    $('#operacao-resumo').html(op_manutencao.toFixed(2) + ' €');
+    $('#s-sistema-resumo').html(s_sist_solar.toFixed(0) + ' €');
+    $('#c-sistema-resumo').html(c_sist_solar.toFixed(0) + ' €');
+    $('#reduc-anual-resumo').html(reducao_solar.toFixed(0) + ' €');
+    $('#investimento-resumo').html(investimento_resume.toFixed(0) + ' €');
+    $('#coletores-resumo').html(colectores.toFixed(0) + ' €');
+    $('#deposito-resumo').html(depositos_acessorios.toFixed(0) + ' €');
+    $('#instalacao-resumo').html(instalacao.toFixed(0) + ' €');
+    $('#operacao-resumo').html(op_manutencao.toFixed(0) + ' €');
     $('#periodo-resumo').html(periodo_retorno.toFixed(1) + ' anos');
 
     if (area_colectores > avisos[1].valor) {

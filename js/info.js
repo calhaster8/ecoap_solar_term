@@ -401,62 +401,62 @@ var perfil_mensal = [
                 valor: 0.6 //60%
             }
         ]
-    },
-    {
-        nome: "Definir 'perfil'",
-        latitude: -5,
-        consumo: 0.6, //60%
-        tabela: [
-            {
-                mes: 'Jan',
-                valor: 0
-            },
-            {
-                mes: 'Fev',
-                valor: 0
-            },
-            {
-                mes: 'Mar',
-                valor: 0
-            },
-            {
-                mes: 'Abr',
-                valor: 0
-            },
-            {
-                mes: 'Mai',
-                valor: 0
-            },
-            {
-                mes: 'Jun',
-                valor: 0
-            },
-            {
-                mes: 'Jul',
-                valor: 0
-            },
-            {
-                mes: 'Ago',
-                valor: 0
-            },
-            {
-                mes: 'Set',
-                valor: 0
-            },
-            {
-                mes: 'Out',
-                valor: 0
-            },
-            {
-                mes: 'Nov',
-                valor: 0
-            },
-            {
-                mes: 'Dez',
-                valor: 0
-            }
-        ]
     }
+//    {
+//        nome: "Definir 'perfil'",
+//        latitude: -5,
+//        consumo: 0.6, //60%
+//        tabela: [
+//            {
+//                mes: 'Jan',
+//                valor: 0
+//            },
+//            {
+//                mes: 'Fev',
+//                valor: 0
+//            },
+//            {
+//                mes: 'Mar',
+//                valor: 0
+//            },
+//            {
+//                mes: 'Abr',
+//                valor: 0
+//            },
+//            {
+//                mes: 'Mai',
+//                valor: 0
+//            },
+//            {
+//                mes: 'Jun',
+//                valor: 0
+//            },
+//            {
+//                mes: 'Jul',
+//                valor: 0
+//            },
+//            {
+//                mes: 'Ago',
+//                valor: 0
+//            },
+//            {
+//                mes: 'Set',
+//                valor: 0
+//            },
+//            {
+//                mes: 'Out',
+//                valor: 0
+//            },
+//            {
+//                mes: 'Nov',
+//                valor: 0
+//            },
+//            {
+//                mes: 'Dez',
+//                valor: 0
+//            }
+//        ]
+//    }
 ];
 
 var perfil_semanal = [
@@ -474,12 +474,12 @@ var perfil_semanal = [
         nome: "Consumo similar em todos os dias da semana",
         valor: 1, //100%
         consumo: 0.8 //80%
-    },
-    {
-        nome: "Definir 'perfil'",
-        valor: 0, //0%
-        consumo: 0.8 //80%
     }
+//    {
+//        nome: "Definir 'perfil'",
+//        valor: 0, //0%
+//        consumo: 0.8 //80%
+//    }
 ];
 
 var temperatura_utilizacao_baixo = 28; //°C
@@ -488,6 +488,10 @@ var temperatura_utilizacao_alto = 50; //°C
 
 var desvios = [
     {
+        nome: "Sul",
+        valor: 0
+    },
+    {
         nome: "Desvio de Sul +/- 10°",
         valor: 10
     },
@@ -495,22 +499,19 @@ var desvios = [
         nome: "Desvio de Sul +/- 20°",
         valor: 20
     },
-    {
-        nome: "Este",
-        valor: "Não é recomendável instalar um sistema solar com esta orientação"
-    },
-    {
-        nome: "Oeste",
-        valor: "Não é recomendável instalar um sistema solar com esta orientação"
-    },
-    {
-        nome: "Sul",
-        valor: 0
-    },
+//    {
+//        nome: "Este",
+//        valor: "Não é recomendável instalar um sistema solar com esta orientação"
+//    },
+//    {
+//        nome: "Oeste",
+//        valor: "Não é recomendável instalar um sistema solar com esta orientação"
+//    },
+
     {
         nome: "Outra orientação (desvio de Sul)",
         valor: "preencher"
-    },
+    }
 ];
 
 var consumo_diario_aqs = 40; //litros/pessoa

@@ -1,416 +1,385 @@
 <!DOCTYPE html>
 <html lang="pt">
-  <head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous"/>
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,300,400|Open+Sans:300,400|Roboto:100,300,400" rel="stylesheet"/>
-    <!--BOOTSTRAP CDN-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
-    <link rel="shortcut icon" href="img/logo-head-small.png" type="image/png"/>
-    <!--CUSTOM CSS-->
-    <link rel="stylesheet" href="css/style.css"/>
-    <!--BOOTSTRAP + JQUERY CDN-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <!--CUSTOM JS-->
-    <script src="js/main.js"></script>
-    <script src="js/info.js"></script>
-    <script src="js/calculos.js"></script>
-    <script src="js/globals.js"></script>
-    <title>Calculadora - Solar Térmico</title>
-  </head>
-  <body>
-    <header class="header">
-      <!--span Eco.AP Calculator-->
-      <!--.logo--><span class="header-title">Calculadora - Solar Térmico</span>
-      <!--<img src="img/logo.png" alt="logo" class="logo-img"/>-->
-    </header>
-    <main class="main container">
-      <div class="row">
-        <div class="col-md-12 col-sm-12">
-          <div class="main-content">
-            <!--MENU CHOICE-->
-            <div id="menu" style="display:block;" data-id="1" class="step">
-              <div class="dados-titulo"><span>Menu</span></div>
-              <div class="dados-child">
-                <div class="dado menu-choice">
-                  <label for="menu-choice-sel">Utilizar a calculadora para:</label>
-                  <select id="menu-choice-sel" name="menu-choice-sel" class="sel">
-                    <option value="">Seleccionar opção</option>
-                    <option value="0">Aguas Quentes Sanitárias</option>
-                    <option value="1">Piscinas (brevemente)</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-            <!--Dados-->
-            <div id="dados" data-id="2" class="step">
-              <div class="dados-titulo"><span>Dados</span></div>
-              <div class="dados-child">
-                <div class="dado distrito">
-                  <label for="distrito">Distrito</label>
-                  <select id="distrito" name="distrito" class="sel">
-                    <option value="">Seleccionar opção</option>
-                  </select>
-                </div>
-                <div class="dado latitude">
-                  <label for="latitude">Latitude (aprox.)</label>
-                  <input id="distrito-latitude" type="number" placeholder="0°" class="form-control xInput"/>
-                </div>
-                <div class="dado sis-prod-aqs">
-                  <label for="sis-prod">Sistema de produção de AQS</label>
-                  <select id="sis-prod" name="sis-prod" class="sel">
-                    <option value="">Seleccionar opção</option>
-                  </select>
-                </div>
-                <div class="dado rendimento">
-                  <label id="labelRendimento" for="rend"></label>
-                  <select id="rend" name="rend" class="sel">
-                    <option value="">Seleccionar opção</option>
-                    <option value="1">Não conhece</option>
-                    <option value="2">Inserir rendimento</option>
-                  </select>
-                  <label id="labelIRendman" for="iRendMan" style="display:none;">Insira o rendimento</label>
-                  <input id="iRendMan" name="iRendMan" placeholder="" style="display:none;"/>
-                </div>
-                <div class="dado age">
-                  <label for="age">Idade (aprox.)</label>
-                  <select id="age" name="age" class="sel">
-                    <option value="">Seleccionar opção</option>
-                  </select>
-                </div>
-                <div class="dado custo-unit">
-                  <label id="custo-unit-label" for="custo-unit">Custo energético unitário(€)</label>
-                  <input id="custo-unit-input" type="number" placeholder="0€" class="form-control xInput" min="0" step="0.01"/>
-                </div>
-                <div class="tabela-diaria">
-                  <table id="tb" class="table table-bordered">
-                    <tbody>
-                      <tr class="titulo_row">
-                        <th colspan="3" class="tituloTH">Utilização diária de águas quentes sanitárias (média representativa do período de maior consumo)</th>
-                        <th class="tituloTH">&nbsp</th>
-                      </tr>
-                      <tr class="textTR">
-                        <td class="select-cell">
-                          <select id="tipo-consumo1" name="tipo-consumo" class="tipo-consumo">
-                            <option value="">Seleccionar opção</option>
-                          </select>
-                        </td>
-                        <td id="tipo-consumo-descricao1" class="in tipo-consumo-descricao"></td>
-                        <td class="in">
-                          <input id="tipo-consumo-value1" type="number" placeholder="0" class="form-control xInput"/>
-                        </td>
-                        <td class="in"> 
-                          <button id="remove" type="button" class="but-dados">Remover</button>
-                        </td>
-                      </tr>
-                      <tr id="add_row" class="textTR">
-                        <td colspan="3" class="in"></td>
-                        <td class="in"> 
-                          <button id="add" type="button" class="but-dados">Adicionar</button>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-                <div class="dado perfil-mensal">
-                  <label for="perfil-mensal">Perfil de utilização mensal</label>
-                  <select id="perfil-mensal" name="perfil-mensal" class="sel">
-                    <option value="">Seleccionar opção</option>
-                  </select>
-                </div>
-                <div class="tabelas table-mensal hide-perfil-mensal">
-                  <table class="table table-bordered">
-                    <tbody>
-                      <tr class="titulo_row">
-                        <th class="tituloTH">Jan</th>
-                        <th class="tituloTH">Fev</th>
-                        <th class="tituloTH">Mar</th>
-                        <th class="tituloTH">Abr</th>
-                        <th class="tituloTH">Mai</th>
-                        <th class="tituloTH">Jun</th>
-                        <th class="tituloTH">Jul</th>
-                        <th class="tituloTH">Ago</th>
-                        <th class="tituloTH">Set</th>
-                        <th class="tituloTH">Out</th>
-                        <th class="tituloTH">Nov</th>
-                        <th class="tituloTH">Dez</th>
-                      </tr>
-                      <tr class="textTR">
-                        <td class="input-table">
-                          <input id="perfil-mensal-input1" type="number" placeholder="0%" class="form-control xInput" min="0"/>
-                        </td>
-                        <td class="in">
-                          <input id="perfil-mensal-input2" type="number" placeholder="0%" class="form-control xInput" min="0"/>
-                        </td>
-                        <td class="in">
-                          <input id="perfil-mensal-input3" type="number" placeholder="0%" class="form-control xInput" min="0"/>
-                        </td>
-                        <td class="in">
-                          <input id="perfil-mensal-input4" type="number" placeholder="0%" class="form-control xInput" min="0"/>
-                        </td>
-                        <td class="in">
-                          <input id="perfil-mensal-input5" type="number" placeholder="0%" class="form-control xInput" min="0"/>
-                        </td>
-                        <td class="in">
-                          <input id="perfil-mensal-input6" type="number" placeholder="0%" class="form-control xInput" min="0"/>
-                        </td>
-                        <td class="in">
-                          <input id="perfil-mensal-input7" type="number" placeholder="0%" class="form-control xInput" min="0"/>
-                        </td>
-                        <td class="in">
-                          <input id="perfil-mensal-input8" type="number" placeholder="0%" class="form-control xInput" min="0"/>
-                        </td>
-                        <td class="in">
-                          <input id="perfil-mensal-input9" type="number" placeholder="0%" class="form-control xInput" min="0"/>
-                        </td>
-                        <td class="in">
-                          <input id="perfil-mensal-input10" type="number" placeholder="0%" class="form-control xInput" min="0"/>
-                        </td>
-                        <td class="in">
-                          <input id="perfil-mensal-input11" type="number" placeholder="0%" class="form-control xInput" min="0"/>
-                        </td>
-                        <td class="in">
-                          <input id="perfil-mensal-input12" type="number" placeholder="0%" class="form-control xInput" min="0"/>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-                <div class="dado perfil-semanal">
-                  <label for="perfil-semanal">Perfil de utilização semanal</label>
-                  <select id="perfil-semanal" name="perfil-semanal" class="sel">
-                    <option value="">Seleccionar opção</option>
-                  </select>
-                </div>
-                <div class="tabelas table-semanal hide-perfil-semanal">
-                  <table class="table table-bordered">
-                    <tbody>
-                      <tr class="titulo_row">
-                        <th class="tituloTH">2ª</th>
-                        <th class="tituloTH">3ª</th>
-                        <th class="tituloTH">4ª</th>
-                        <th class="tituloTH">5ª</th>
-                        <th class="tituloTH">6ª</th>
-                        <th class="tituloTH">Sáb</th>
-                        <th class="tituloTH">Dom</th>
-                      </tr>
-                      <tr class="textTR">
-                        <td class="in">
-                          <input id="perfil-semanal-input1" type="number" placeholder="0%" class="form-control xInput" min="0"/>
-                        </td>
-                        <td class="in">
-                          <input id="perfil-semanal-input2" type="number" placeholder="0%" class="form-control xInput" min="0"/>
-                        </td>
-                        <td class="in">
-                          <input id="perfil-semanal-input3" type="number" placeholder="0%" class="form-control xInput" min="0"/>
-                        </td>
-                        <td class="in">
-                          <input id="perfil-semanal-input4" type="number" placeholder="0%" class="form-control xInput" min="0"/>
-                        </td>
-                        <td class="in">
-                          <input id="perfil-semanal-input5" type="number" placeholder="0%" class="form-control xInput" min="0"/>
-                        </td>
-                        <td class="in">
-                          <input id="perfil-semanal-input6" type="number" placeholder="0%" class="form-control xInput" min="0"/>
-                        </td>
-                        <td class="in">
-                          <input id="perfil-semanal-input7" type="number" placeholder="0%" class="form-control xInput" min="0"/>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-            <div id="dados-2" data-id="3" class="step">
-              <div class="dados-titulo"><span>Dados</span></div>
-              <div class="dados-child">
-                <div class="dado temp-req">
-                  <label for="temp-req">Temperatura requerida (°C)</label>
-                  <input id="temp-req" type="number" placeholder="0 °C" class="form-control xInput"/>
-                  <span class="pop-temp">*Temperatura de produção</span>
-                </div>
-                <div class="tabelas">
-                  <table class="table table-bordered">
-                    <tbody>
-                      <tr class="textTR">
-                        <td rowspan="2" class="in">Orientação solar</td>
-                        <td class="select-cell">
-                          <select id="orientacao-sel" name="orientacao-sel">
-                            <option value="">Seleccionar opção</option>
-                          </select>
-                        </td>
-                      </tr>
-                      <tr class="textTR">
-                        <td class="input-table">
-                          <input id="orientacao-input" type="number" placeholder="0" class="form-control xInput"/>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-                <div class="nota-outro-desvio hide-nota">NOTA: Desvio superior a 20° relativamente a Sul influência a rentabilidade energética do sistema solar. </div>
-                <div class="dado inclinacao">
-                  <label for="inclinacao">Inclinação</label>
-                  <input id="inclinacao-input" type="number" value="" placeholder="Valor será introduzindo automaticamente" class="form-control xInput"/>
-                  <span class="pop-inclinacao">*Esta inclinação depende da latitude</span>
-                </div>
-              </div>
-            </div>
-            <div id="resumo" data-id="4" class="step">
-              <div class="dados-titulo"><span>Resumo</span></div>
-              <div class="dados-child">
-                <table class="table table-bordered">
-                  <tbody>
-                    <tr class="textTR">
-                      <td class="in">N° de coletores</td>
-                      <td id="n-coletores-resumo" class="center"></td>
-                    </tr>
-                    <tr class="textTR">
-                      <td class="in">Área</td>
-                      <td id="area-resumo" class="center"></td>
-                    </tr>
-                    <tr class="textTR">
-                      <td class="in">Volume de acumulação</td>
-                      <td id="volume-resumo" class="center"></td>
-                    </tr>
-                    <tr class="textTR">
-                      <td class="in">Necessidades energéticas anuais (kWh)</td>
-                      <td id="nec-ener-resumo" class="center"></td>
-                    </tr>
-                    <tr class="textTR">
-                      <td class="in">Energia solar (kWh)</td>
-                      <td id="ener-solar-resumo" class="center"></td>
-                    </tr>
-                    <tr class="textTR">
-                      <td class="in">Energia do sistema de apoio (kWh)</td>
-                      <td id="ener-backup-resumo" class="center"></td>
-                    </tr>
-                    <tr class="textTR">
-                      <td class="in">Excedente no verão</td>
-                      <td id="excedente-resumo" class="center"></td>
-                    </tr>
-                    <tr class="textTR">
-                      <td class="in">Fração solar</td>
-                      <td id="fracao-resumo" class="center"></td>
-                    </tr>
-                    <tr class="titulo_row">
-                      <th colspan="2" class="tituloTH">Custos com energia</th>
-                    </tr>
-                    <tr class="textTR">
-                      <td class="in">Sem sistema solar</td>
-                      <td id="s-sistema-resumo" class="center"></td>
-                    </tr>
-                    <tr class="textTR">
-                      <td class="in">Com sistema solar</td>
-                      <td id="c-sistema-resumo" class="center"></td>
-                    </tr>
-                    <tr class="textTR">
-                      <td class="in">Redução anual</td>
-                      <td id="reduc-anual-resumo" class="center"></td>
-                    </tr>
-                    <tr class="textTR">
-                      <td class="in">Investimento</td>
-                      <td id="investimento-resumo" class="center"></td>
-                    </tr>
-                    <tr class="textTR">
-                      <td class="in sub">Coletores</td>
-                      <td id="coletores-resumo" class="center sub-val"></td>
-                    </tr>
-                    <tr class="textTR">
-                      <td class="in sub">Depósitos e accesórios</td>
-                      <td id="deposito-resumo" class="center sub-val"></td>
-                    </tr>
-                    <tr class="textTR">
-                      <td class="in sub">Instalação</td>
-                      <td id="instalacao-resumo" class="center sub-val"></td>
-                    </tr>
-                    <tr class="textTR">
-                      <td class="in">Operação e manutenção</td>
-                      <td id="operacao-resumo" class="center"></td>
-                    </tr>
-                    <tr class="textTR">
-                      <td class="in">Período de retorno</td>
-                      <td id="periodo-resumo" class="center"></td>
-                    </tr>
-                  </tbody>
-                </table>
-                
-                <span class="area-note"></span>
-                <span class="excendente-note"></span>
-              
-                <div class="dado coletores-reanalise">
-                    <label for="coletores-reanalise">Corrigir n° de coletores</label>
-                    <input id="coletores-reanalise" type="number" placeholder="0" class="form-control xInput"/>
-                </div>
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" crossorigin="anonymous"/>
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:100,300,400|Open+Sans:300,400|Roboto:100,300,400" rel="stylesheet"/>
+        <link rel="stylesheet" href="https://printjs-4de6.kxcdn.com/print.min.css"/>
+        <!--BOOTSTRAP CDN-->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+        <link rel="shortcut icon" href="img/logo-head-small.png" type="image/png"/>
+        <!--CUSTOM CSS-->
+        <link rel="stylesheet" href="css/style.css"/>
+        <!--BOOTSTRAP + JQUERY CDN-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <!--CUSTOM JS-->
+        <script src="js/main.js"></script>
+        <script src="js/info.js"></script>
+        <script src="js/calculos.js"></script>
+        <script src="js/globals.js"></script>        
+        <script src="https://printjs-4de6.kxcdn.com/print.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
+        <title>Calculadora - Solar Térmico</title>
+    </head>
+    <body>
+        <header class="header">
+            <!--span Eco.AP Calculator-->
+            <!--.logo--><span class="header-title">Calculadora - Solar Térmico</span>
+        </header>
+        <main class="main container">
+            <form id="solar-termico">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        <div class="main-content">
+                            <!--MENU CHOICE-->
+                            <div id="menu" style="display: none;" data-id="1" class="step">
+                                <div class="dados-titulo"><span>Menu</span></div>
+                                <div class="dados-child">
+                                    <div class="dado menu-choice">
+                                        <label for="menu-choice-sel">Utilizar a calculadora para:</label>
+                                        <select id="menu-choice-sel" name="menu-choice-sel" class="sel">
+                                            <option value="">Seleccionar opção</option>
+                                            <option value="0" selected="selected">Aguas Quentes Sanitárias</option>
+                                            <option value="1">Piscinas (brevemente)</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Dados-->
+                            <div id="dados" style="display: block;" data-id="2" class="step">
+                                <div class="dados-titulo"><span>Dados</span></div>
+                                <div class="dados-child">
+                                    <div class="dado distrito">
+                                        <label for="distrito">Distrito</label>
+                                        <select id="distrito" name="distrito" class="sel">
+                                            <option value="">Seleccionar opção</option>
+                                        </select>
+                                    </div>
+                                    <div class="dado latitude">
+                                        <label for="latitude">Latitude (aprox.)</label>
+                                        <input id="distrito-latitude" type="number" placeholder="0°" disabled="disabled" class="form-control xInput"/>
+                                    </div>
+                                    <div class="dado sis-prod-aqs">
+                                        <label for="sis_prod">Sistema de produção de AQS</label>
+                                        <select id="sis_prod" name="sis_prod" class="sel">
+                                            <option value="">Seleccionar opção</option>
+                                        </select>
+                                    </div>
+                                    <div class="dado rendimento">
+                                        <label id="labelRendimento" for="rend"></label>
+                                        <select id="rend" name="rend" class="sel">
+                                            <option value="">Seleccionar opção</option>
+                                            <option value="1">Não conhece</option>
+                                            <option value="2">Inserir rendimento</option>
+                                        </select>
+                                        <label id="labelIRendman" for="iRendMan" style="display:none;">Insira o rendimento</label>
+                                        <input id="iRendMan" name="iRendMan" placeholder="" style="display:none;"/>
+                                    </div>
+                                    <div class="dado age">
+                                        <label for="age">Idade (aprox.)</label>
+                                        <select id="age" name="age" class="sel">
+                                            <option value="">Seleccionar opção</option>
+                                        </select>
+                                    </div>
+                                    <div class="dado custo-unit">
+                                        <label id="custo-unit-label" for="custo-unit-input">Custo energético unitário (€/kWh)</label>
+                                        <input id="custo-unit-input" type="number" name="custo-unit-input" placeholder="0.10€" />
+                                    </div>
+                                    <div class="tabela-diaria">
+                                        <table id="tb" class="table table-bordered">
+                                            <tbody>
+                                                <tr class="titulo_row">
+                                                    <th colspan="3" class="tituloTH">Utilização diária de águas quentes sanitárias (média representativa do período de maior consumo)</th>
+                                                    <th class="tituloTH">&nbsp</th>
+                                                </tr>
+                                                <tr class="textTR">
+                                                    <td class="select-cell">
+                                                        <select id="tipo-consumo1" name="tipo-consumo1" class="tipo-consumo">
+                                                            <option value="">Seleccionar opção</option>
+                                                        </select>
+                                                    </td>
+                                                    <td id="tipo-consumo-descricao1" class="in tipo-consumo-descricao"></td>
+                                                    <td class="in">
+                                                        <input id="tipo-consumo-value1" name="tipo-consumo-value1" type="number" placeholder="0" class="form-control xInput"/>
+                                                    </td>
+                                                    <td class="in"> 
+                                                        <button id="remove" type="button" class="but-dados">Remover</button>
+                                                    </td>
+                                                </tr>
+                                                <tr id="add_row" class="textTR">
+                                                    <td colspan="3" class="in"></td>
+                                                    <td class="in"> 
+                                                        <button id="add" type="button" class="but-dados">Adicionar</button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="dado perfil-mensal">
+                                        <label for="perfil-mensal">Perfil de utilização mensal</label>
+                                        <select id="perfil-mensal" name="perfil-mensal" class="sel">
+                                            <option value="">Seleccionar opção</option>
+                                        </select>
+                                    </div>
+                                    <div class="tabelas table-mensal hide-perfil-mensal">
+                                        <table class="table table-bordered">
+                                            <tbody>
+                                                <tr class="titulo_row">
+                                                    <th class="tituloTH">Jan</th>
+                                                    <th class="tituloTH">Fev</th>
+                                                    <th class="tituloTH">Mar</th>
+                                                    <th class="tituloTH">Abr</th>
+                                                    <th class="tituloTH">Mai</th>
+                                                    <th class="tituloTH">Jun</th>
+                                                    <th class="tituloTH">Jul</th>
+                                                    <th class="tituloTH">Ago</th>
+                                                    <th class="tituloTH">Set</th>
+                                                    <th class="tituloTH">Out</th>
+                                                    <th class="tituloTH">Nov</th>
+                                                    <th class="tituloTH">Dez</th>
+                                                </tr>
+                                                <tr class="textTR">
+                                                    <td class="input-table">
+                                                        <input id="perfil-mensal-input1" type="number" placeholder="0%" class="form-control xInput" min="0"/>
+                                                    </td>
+                                                    <td class="in">
+                                                        <input id="perfil-mensal-input2" type="number" placeholder="0%" class="form-control xInput" min="0"/>
+                                                    </td>
+                                                    <td class="in">
+                                                        <input id="perfil-mensal-input3" type="number" placeholder="0%" class="form-control xInput" min="0"/>
+                                                    </td>
+                                                    <td class="in">
+                                                        <input id="perfil-mensal-input4" type="number" placeholder="0%" class="form-control xInput" min="0"/>
+                                                    </td>
+                                                    <td class="in">
+                                                        <input id="perfil-mensal-input5" type="number" placeholder="0%" class="form-control xInput" min="0"/>
+                                                    </td>
+                                                    <td class="in">
+                                                        <input id="perfil-mensal-input6" type="number" placeholder="0%" class="form-control xInput" min="0"/>
+                                                    </td>
+                                                    <td class="in">
+                                                        <input id="perfil-mensal-input7" type="number" placeholder="0%" class="form-control xInput" min="0"/>
+                                                    </td>
+                                                    <td class="in">
+                                                        <input id="perfil-mensal-input8" type="number" placeholder="0%" class="form-control xInput" min="0"/>
+                                                    </td>
+                                                    <td class="in">
+                                                        <input id="perfil-mensal-input9" type="number" placeholder="0%" class="form-control xInput" min="0"/>
+                                                    </td>
+                                                    <td class="in">
+                                                        <input id="perfil-mensal-input10" type="number" placeholder="0%" class="form-control xInput" min="0"/>
+                                                    </td>
+                                                    <td class="in">
+                                                        <input id="perfil-mensal-input11" type="number" placeholder="0%" class="form-control xInput" min="0"/>
+                                                    </td>
+                                                    <td class="in">
+                                                        <input id="perfil-mensal-input12" type="number" placeholder="0%" class="form-control xInput" min="0"/>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="dado perfil-semanal">
+                                        <label for="perfil-semanal">Perfil de utilização semanal</label>
+                                        <select id="perfil-semanal" name="perfil-semanal" class="sel">
+                                            <option value="">Seleccionar opção</option>
+                                        </select>
+                                    </div>
+                                    <div class="tabelas table-semanal hide-perfil-semanal">
+                                        <table class="table table-bordered">
+                                            <tbody>
+                                                <tr class="titulo_row">
+                                                    <th class="tituloTH">2ª</th>
+                                                    <th class="tituloTH">3ª</th>
+                                                    <th class="tituloTH">4ª</th>
+                                                    <th class="tituloTH">5ª</th>
+                                                    <th class="tituloTH">6ª</th>
+                                                    <th class="tituloTH">Sáb</th>
+                                                    <th class="tituloTH">Dom</th>
+                                                </tr>
+                                                <tr class="textTR">
+                                                    <td class="in">
+                                                        <input id="perfil-semanal-input1" type="number" placeholder="0%" class="form-control xInput" min="0"/>
+                                                    </td>
+                                                    <td class="in">
+                                                        <input id="perfil-semanal-input2" type="number" placeholder="0%" class="form-control xInput" min="0"/>
+                                                    </td>
+                                                    <td class="in">
+                                                        <input id="perfil-semanal-input3" type="number" placeholder="0%" class="form-control xInput" min="0"/>
+                                                    </td>
+                                                    <td class="in">
+                                                        <input id="perfil-semanal-input4" type="number" placeholder="0%" class="form-control xInput" min="0"/>
+                                                    </td>
+                                                    <td class="in">
+                                                        <input id="perfil-semanal-input5" type="number" placeholder="0%" class="form-control xInput" min="0"/>
+                                                    </td>
+                                                    <td class="in">
+                                                        <input id="perfil-semanal-input6" type="number" placeholder="0%" class="form-control xInput" min="0"/>
+                                                    </td>
+                                                    <td class="in">
+                                                        <input id="perfil-semanal-input7" type="number" placeholder="0%" class="form-control xInput" min="0"/>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="dados-2" data-id="3" class="step">
+                                <div class="dados-titulo"><span>Dados</span></div>
+                                <div class="dados-child">
+                                    <div class="dado temp-req">
+                                        <label for="temp-req">Temperatura requerida (°C)</label>
+                                        <input id="temp-req" name="temp-req" type="number" placeholder="0 °C" class="form-control xInput"/>
+                                        <span class="pop-temp">* Temperatura de acumulação/distribuição (sistema de produção) e não a temperatura à saída do ponto de consumo</span>
+                                    </div>
+                                    <div class="tabelas">
+                                        <table class="table table-bordered">
+                                            <tbody>
+                                                <tr class="textTR">
+                                                    <td rowspan="2" class="in">Orientação solar</td>
+                                                    <td class="select-cell">
+                                                        <select id="orientacao-sel" name="orientacao-sel">
+                                                            <option value="">Seleccionar opção</option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                                <tr class="textTR">
+                                                    <td class="input-table">
+                                                        <input id="orientacao-input" name="orientacao-input" type="number" placeholder="0" class="form-control xInput" disabled="disabled"/>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="nota-outro-desvio hide-nota">NOTA: Desvio superior a 20° relativamente a Sul influência a rentabilidade energética do sistema solar. </div>
+                                    <div class="dado inclinacao">
+                                        <label for="inclinacao">Inclinação</label>
+                                        <input id="inclinacao-input" type="number" value="" placeholder="Valor será introduzindo automaticamente" class="form-control xInput" disabled="disabled"/>
+                                        <span class="pop-inclinacao">*Esta inclinação depende da latitude</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="resumo" data-id="4" class="step">
+                                <div class="dados-titulo"><span>Resumo</span></div>
+                                <div class="dados-child">
+                                    <table class="table table-bordered">
+                                        <tbody>
+                                            <tr class="textTR">
+                                                <td class="in">N° de coletores solares</td>
+                                                <td id="n-coletores-resumo" class="center"></td>
+                                            </tr>
+                                            <tr class="textTR">
+                                                <td class="in">Área</td>
+                                                <td id="area-resumo" class="center"></td>
+                                            </tr>
+                                            <tr class="textTR">
+                                                <td class="in">Volume dos depósitos de acumulação</td>
+                                                <td id="volume-resumo" class="center"></td>
+                                            </tr>
+                                            <tr class="textTR">
+                                                <td class="in">Necessidades energéticas anuais (kWh)</td>
+                                                <td id="nec-ener-resumo" class="center"></td>
+                                            </tr>
+                                            <tr class="textTR">
+                                                <td class="in">Energia produzida pelo solar térmico (kWh)</td>
+                                                <td id="ener-solar-resumo" class="center"></td>
+                                            </tr>
+                                            <tr class="textTR">
+                                                <td class="in">Consumo de Energia (sistema de apoio) (kWh)</td>
+                                                <td id="ener-backup-resumo" class="center"></td>
+                                            </tr>
+                                            <tr class="textTR">
+                                                <td class="in">Excedente de Energia (no verão)</td>
+                                                <td id="excedente-resumo" class="center"></td>
+                                            </tr>
+                                            <tr class="textTR">
+                                                <td class="in">Contributo do Solar Térmico</td>
+                                                <td id="fracao-resumo" class="center"></td>
+                                            </tr>
+                                            <tr class="titulo_row">
+                                                <th colspan="2" class="tituloTH">Resultados</th>
+                                            </tr>
+                                            <tr class="textTR">
+                                                <td class="in">Custos energéticos (cenário inicial - sem solar térmico)</td>
+                                                <td id="s-sistema-resumo" class="center"></td>
+                                            </tr>
+                                            <tr class="textTR">
+                                                <td class="in">Custos energéticos (cenário final - com solar térmico)</td>
+                                                <td id="c-sistema-resumo" class="center"></td>
+                                            </tr>
+                                            <tr class="textTR">
+                                                <td class="in">Redução anual da fatura energética</td>
+                                                <td id="reduc-anual-resumo" class="center"></td>
+                                            </tr>
+                                            <tr class="textTR">
+                                                <td class="in">Investimento *</td>
+                                                <td id="investimento-resumo" class="center"></td>
+                                            </tr>
+                                            <tr class="textTR">
+                                                <td class="in sub">Coletores</td>
+                                                <td id="coletores-resumo" class="center sub-val"></td>
+                                            </tr>
+                                            <tr class="textTR">
+                                                <td class="in sub">Depósitos e accesórios</td>
+                                                <td id="deposito-resumo" class="center sub-val"></td>
+                                            </tr>
+                                            <tr class="textTR">
+                                                <td class="in sub">Instalação</td>
+                                                <td id="instalacao-resumo" class="center sub-val"></td>
+                                            </tr>
+                                            <tr class="textTR">
+                                                <td class="in">Custos anuais com operação e manutenção</td>
+                                                <td id="operacao-resumo" class="center"></td>
+                                            </tr>
+                                            <tr class="textTR">
+                                                <td class="in">Período de retorno</td>
+                                                <td id="periodo-resumo" class="center"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div class="in">* O investimento estimado incorpora os custos com os coletores solares, com depósitos e/ou acessórios e os respetivos custos de instalação.</div>
 
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-4">
-          <div class="but-2">
-            <button type="button" onclick="prevStep()" class="but anterior">Anterior</button>
-            <button type="button" onclick="nextStep()" class="but seguinte">Próximo</button>
-          </div>
-          <!--.teste
-          button.but.seguinte(type="button" onclick="totalNecessidadesEnergiaFunction()") teste
-          
-          -->
-          <div class="end-step step-but">
-            <button type="button" onclick="prevStep()" class="but anterior">Anterior</button>
-            <button id="analise-but" type="button" onclick="totalNecessidadesEnergiaFunction()" class="but end-but">Analisar</button>
-            <button id="reanalise-but" type="button" class="but reload-but" style="display:none;">Reanalisar</button>
-          </div>
-          <div class="end-step step-but">
-            <button id="reload-but" type="button" class="but reload-but" style="display:none;">Voltar ao início</button>
-          </div>
-        </div>
-      </div>
-    </main>
-    <!--footer
-    .container-fluid
-        .row
-            .col-md-12
-                .partners
-                    a.partner-link(href="http://www.sg.min-economia.pt/")
-                        img.partners-img.rep-port(src="img/footer/rep-port.png", alt="Républica Portuguesa")
-                    
-                    a.partner-link(href="http://www.portugal.gov.pt/pt/ministerios/meco.aspx")
-                        img.partners-img.port-energia(src="img/footer/portugal-energia-direct.png", alt="Portugal Energia")
-                    
-                    a.partner-link(href="http://www.dgeg.pt/")
-                        img.partners-img.dgeg(src="img/footer/dgeg.png", alt="Direcção Geral de Energia e Geologia")
-                    
-                    a.partner-link(href="http://ecoap.pnaee.pt/")
-                        img.partners-img.ee(src="img/footer/Ee.png", alt="EE")
-                    
-                    a.partner-link.prom(href="https://www.adene.pt/")
-                        img.partners-img.adene(src="img/footer/base-adene.png", alt="Adene")
-                    
-                    //a(href="#")
-                    span.conf
-                        //.conf-text Confinaciado por:
-                        img.partners-img.posteur(src="img/footer/posteur.png", alt="Posteur")
-                    
-                    //a(href="#")
-                    img.partners-img.port-2020(src="img/footer/2020.png", alt="2020")
-                    
-                    a.partner-link(href="https://europa.eu/european-union/index_pt")
-                        img.partners-img.ue(src="img/footer/UE.png", alt="UE")
-    
-    
-                .policy
-                    span.policy-link(href="#") © 2015 Eco.AP
-    
-                    a.policy-link(href="http://ecoap.pnaee.pt/ficha-tecnica/") Ficha técnica
-    
-                    a.policy-link(href="https://www.adene.pt/privacidade/") Política de Privacidade
-    -->
-  </body>
+
+                                    <span class="area-note"></span>
+                                    <span class="excendente-note"></span>
+
+                                    <div class="dado coletores-reanalise">
+                                        <label for="coletores-reanalise">Corrigir n° de coletores</label>
+                                        <input id="coletores-reanalise" type="number" placeholder="0" class="form-control xInput"/>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="but-2">
+                            <button type="button" onclick="prevStep()" class="but anterior">Anterior</button>
+                            <button type="button" class="but seguinte">Próximo</button>
+                        </div>
+                        <div class="end-step step-but">
+                            <button type="button" onclick="prevStep()" class="but anterior">Anterior</button>
+                            <button id="analise-but" type="button" class="but end-but">Analisar</button>
+                            <button id="reanalise-but" type="button" class="but reload-but" style="display:none;">Reanalisar</button>
+                        </div>
+                        <div class="end-step step-but">
+                            <button id="reload-but" type="button" class="but reload-but" style="display:none;">Voltar ao início</button>
+                        </div>
+
+                        <div class="print_pdf step-but">
+                            <span class="print_text">Deseja imprimir?
+                                <button type="button" onclick="printJS('resumo', 'html')" class="print_link">Clique aqui</button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </main>
+    </body>
 </html>
