@@ -76,7 +76,7 @@
                                             <option value="2">Inserir rendimento</option>
                                         </select>
                                         <label id="labelIRendman" for="iRendMan" style="display:none;">Insira o rendimento</label>
-                                        <input id="iRendMan" name="iRendMan" placeholder="" style="display:none;"/>
+                                        <input id="iRendMan" type="number" name="iRendMan" placeholder=""  min="0" step="0.1" style="display:none;"/>
                                     </div>
                                     <div class="dado age">
                                         <label for="age">Idade (aprox.)</label>
@@ -86,7 +86,7 @@
                                     </div>
                                     <div class="dado custo-unit">
                                         <label id="custo-unit-label" for="custo-unit-input">Custo energético unitário (€/kWh)</label>
-                                        <input id="custo-unit-input" type="number" name="custo-unit-input" placeholder="0.10€" />
+                                        <input id="custo-unit-input" type="number" name="custo-unit-input" placeholder="0.10€" min="0" step="0.01"/>
                                     </div>
                                     <div class="tabela-diaria">
                                         <table id="tb" class="table table-bordered">
@@ -233,7 +233,7 @@
                                 <div class="dados-child">
                                     <div class="dado temp-req">
                                         <label for="temp-req">Temperatura requerida (°C)</label>
-                                        <input id="temp-req" name="temp-req" type="number" placeholder="0 °C" class="form-control xInput"/>
+                                        <input id="temp-req" name="temp-req" type="number" placeholder="0 °C" min="0" max="100" step="1" class="form-control xInput"/>
                                         <span class="pop-temp">* Temperatura de acumulação/distribuição (sistema de produção) e não a temperatura à saída do ponto de consumo</span>
                                     </div>
                                     <div class="tabelas">
@@ -249,7 +249,7 @@
                                                 </tr>
                                                 <tr class="textTR">
                                                     <td class="input-table">
-                                                        <input id="orientacao-input" name="orientacao-input" type="number" placeholder="0" class="form-control xInput" disabled="disabled"/>
+                                                        <input id="orientacao-input" name="orientacao-input" type="number"  min="0" max="70" step="1" placeholder="0" class="form-control xInput" disabled="disabled"/>
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -345,11 +345,11 @@
 
 
                                     <span class="area-note"></span>
-                                    <span class="excendente-note"></span>
+                                    <span class="excedente-note"></span>
 
                                     <div class="dado coletores-reanalise">
                                         <label for="coletores-reanalise">Corrigir n° de coletores</label>
-                                        <input id="coletores-reanalise" type="number" placeholder="0" class="form-control xInput"/>
+                                        <input id="coletores-reanalise" min="1" step="1" type="number" placeholder="0" class="form-control xInput"/>
                                     </div>
 
                                 </div>

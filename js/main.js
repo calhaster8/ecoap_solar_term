@@ -18,14 +18,7 @@ $(document).ready(function() {
     $('#perfil-semanal').change(getPerfilSemanal);
     $('#orientacao-sel').change(getDesvios);
 
-    
-//    $('#orientacao-input').change(function(){
-//        if($(this).val()>70 || $(this).val()<0){
-//            $(this).attr("style","color:red");
-//        }else{
-//            $(this).removeAttr("style");
-//        }
-//    });
+
 
     $('#perfil-semanal').change(function() {
         var idLocal = $('#perfil-semanal').val();
@@ -98,10 +91,16 @@ $(document).ready(function() {
                         return false;
                     }
                 },
-                step: 1,
+                step: 0.1,
                 min: 0,
-                max: 1000,
-                digits: true
+                max: function (element) {
+
+                    if ($("#sis_prod").val() != "" && $("#sis_prod").val() != undefined && $("#sis_prod").val() == 0) {
+                        return 7;
+                    } else {
+                        return 110;
+                    }
+                },
             },
             age: {
                 required: function (element) {
@@ -115,8 +114,8 @@ $(document).ready(function() {
             'custo-unit-input': {
                 required: true,
                 number: true,
-                step: 0.00001,
-                min: 0.00001
+                step: 0.01,
+                min: 0
             },
             'tipo-consumo1': {
                 required: true
@@ -138,8 +137,7 @@ $(document).ready(function() {
                 required: true,
                 min: 0,
                 max: 100,
-                number: true,
-                step: 1,
+                step: 1
             },
             'orientacao-sel':{
                 required: true
@@ -148,9 +146,14 @@ $(document).ready(function() {
                 required: true,
                 min: 0,
                 max: 70, 
+                step: 1,
                 digits: true
-            }
-            
+            },
+            'coletores-reanalise': {
+                min: 1,
+                step: 1,
+                digits: true
+            }            
             //passo 3
             
 
@@ -169,9 +172,15 @@ $(document).ready(function() {
             iRendMan: {
                 required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>',
                 min: '<label style="font-size: 14px; color: red;">O rendimento mínimo é 0%.</label>',
-                max: '<label style="font-size: 14px; color: red;">O rendimento máximo é 1000%.</label>',
-                step: '<label style="font-size: 14px; color: red;">o incremento é de 1.</label>',
-                digits: '<label style="font-size: 14px; color: red;">Inserir uma percentagem sem casas decimais. Ex: 10</label>'
+                max: function (element) {
+
+                    if ($("#sis_prod").val() != "" && $("#sis_prod").val() != undefined && $("#sis_prod").val() == 0) {
+                        return '<label style="font-size: 14px; color: red;">O rendimento máximo é 7.</label>';
+                    } else {
+                        return '<label style="font-size: 14px; color: red;">O rendimento máximo é 110%.</label>';
+                    }
+                },
+                step: '<label style="font-size: 14px; color: red;">o incremento é de 0.1.</label>'
             },
             age: {
                 required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>'
@@ -213,7 +222,12 @@ $(document).ready(function() {
                  min: '<label style="font-size: 14px; color: red;">O mínimo é 0 º.</label>',
                 max: '<label style="font-size: 14px; color: red;">O máximo é 70 º.</label>',
                 digits: '<label style="font-size: 14px; color: red;">Insera números sem casas decimais.Ex: 10</label>'
-            }
+            },
+            'coletores-reanalise': {
+                min: '<label style="font-size: 14px; color: red;">O mínimo é 1.</label>',
+                step: '<label style="font-size: 14px; color: red;">O passo de incremento é de 1.</label>',
+                digits: '<label style="font-size: 14px; color: red;">Insera números sem casas decimais.Ex: 10</label>'
+            } 
         }
 
     });
@@ -312,13 +326,13 @@ function getCopRendValues() {
     if (selectedRend != "" && selectedRend != undefined && selectedRend == 2 && idLocal == 0 && idLocal != "" && idLocal != undefined) {
         $('#rend').find("option[value='2']").html("Inserir COP");
         $('#iRendMan').show();
-        //$('#labelIRendman').show();
+        $('#iRendMan').attr('max','7');
         $('.age').hide();
         $('#age').val("");
     } else if (selectedRend != "" && selectedRend != undefined && selectedRend == 2 && idLocal > 0 && idLocal != "" && idLocal != undefined) {
         $('#rend').find("option[value='2']").html("Inserir rendimento");
         $('#iRendMan').show();
-        //$('#labelIRendman').show();
+        $('#iRendMan').attr('max','100');
         $('.age').hide();
         $('#age').val("");
     } else if (selectedRend != "" && selectedRend != undefined && selectedRend == 1) {
@@ -471,6 +485,7 @@ function prevStep() {
         $(".print_pdf").hide();
         $('#reanalise-but').hide();
         $('#reload-but').hide();
+        $('#coletores-reanalise').val("");
         $('.end-step').show();
         $('.end-but').show();
     }

@@ -98,8 +98,10 @@ function energiaSolarCaptada() {
     cenarioI();
     cenarioF();
     reduction();
-    resume();
-    nextStep();
+    var result = resume();
+    if(result==1){
+        nextStep();
+    }
 }
 
 function racio() {
@@ -174,7 +176,9 @@ function energiaBackup() {
 
      if (inputRendimento == 1 && sistemas_prod_aqs[sist_aqs].rendimento[age].nome == idades[age]) {
         rendFinal = sistemas_prod_aqs[sist_aqs].rendimento[age].valor;
-    } else {
+    } else if(sist_aqs!="" && sist_aqs!=undefined && sist_aqs==0 && $("#rend").val()==2){
+        rendFinal = inputRendimento;
+    }else{
         rendFinal = inputRendimento/100;
     }
 
@@ -251,7 +255,9 @@ function cenarioI() {
 
     if (inputRendimento == 1 && sistemas_prod_aqs[sist_aqs].rendimento[age].nome == idades[age]) {
         rendCenarioI = sistemas_prod_aqs[sist_aqs].rendimento[age].valor;
-    } else {
+    } else if(sist_aqs!="" && sist_aqs!=undefined && sist_aqs==0 && $("#rend").val()==2){
+        rendCenarioI = inputRendimento;
+    }else{
         rendCenarioI = inputRendimento/100;
     }
 
@@ -334,6 +340,10 @@ function resume(){
     
     //esta da
     n_colectores = (inputColetores != undefined && inputColetores != "") ? new Number(inputColetores) : new Number((totalRacio / area_coletor_solar).toFixed(0));
+    if(n_colectores<avisos[5].valor){
+        alert(avisos[5].mensagem);
+        return 0;
+    }
     area_colectores = (inputColetores == undefined || inputColetores == "") ? new Number((n_colectores*area_coletor_solar)) : new Number((inputColetores*area_coletor_solar));
     
     volume_acumulacao_resume = area_colectores<8 ? (arred(area_colectores * volume_acumulacao_info,-1) + 10) : arred(area_colectores * volume_acumulacao_info,-2);
@@ -381,7 +391,10 @@ function resume(){
     $('#operacao-resumo').html(op_manutencao.toFixed(0) + ' €');
     $('#periodo-resumo').html(periodo_retorno.toFixed(1) + ' anos');
 
-    if (area_colectores > avisos[1].valor) {
+    if (n_colectores.toFixed(0) == avisos[4].valor) {
+        $('.area-note').html(avisos[4].mensagem);
+        $('.area-note').show();
+    } else if (area_colectores > avisos[1].valor) {
         $('.area-note').html(avisos[1].mensagem);
         $('.area-note').show();
     } else {
@@ -389,13 +402,14 @@ function resume(){
         $('.area-note').hide();
     }
 
-    if (excedente_verao_perc > 0 && excedente_verao_perc != undefined && excedente_verao_perc != '') {
+    if (excedente_verao_perc > 40 && excedente_verao_perc != undefined && excedente_verao_perc != '' && n_colectores>=1.5) {
         $('.excedente-note').html(avisos[0].mensagem);
         $('.excedente-note').show();
     } else {
         $('.excedente-note').html('');
         $('.excedente-note').hide();
     }
+    return 1;
 }
 
 function max(calculos) {

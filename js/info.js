@@ -199,7 +199,7 @@ var consumo_diario_agua = [
         numero_de: "n° de pessoas"
     },
     {
-        nome: "Ginásio",
+        nome: "Ginásio / Balneário",
         valor: 25,
         litros_por: "litro/pessoa",
         numero_de: "n° de pessoas"
@@ -558,7 +558,7 @@ var avisos = [
     {
         nome: "Aviso de produção excedentária",
         valor: 0.4, //40%
-        mensagem: "Demasiada energia excedentária no Verão. Considere reduzir o n.º de colectores solares de modo a não ter muita energia excedentária ou salvaguarde a instalação de sistemas de proteção e/ou o escoamento da energia excedente."
+        mensagem: "Demasiada energia excedentária no Verão. Considere reduzir o n.º de coletores solares de modo a não ter muita energia excedentária ou salvaguarde a instalação de sistemas de proteção e/ou o escoamento da energia excedente. Poderá eventualmente ser necessário alterar a orientação dos coletores."
     },
     {
         nome: "Aviso de projeto",
@@ -574,6 +574,16 @@ var avisos = [
         nome: "Aviso de inclinação",
         valor: 15, //15°
         mensagem: "Um desvio superior em 15º relativamente ao ângulo considerado ideal poderá influenciar a rentabilidade energética do sistema solar."
+    },
+    {
+        nome: "Aviso de colectores",
+        valor: 1, //15°
+        mensagem: "Demasiada energia excedentária no Verão. Considere alterar a orientação dos coletores ou salvaguarde a instalação de sistemas de proteção e/ou o escoamento da energia excedente."
+    },
+    {
+        nome: "Aviso de colectores menor que 0.5",
+        valor: 0.5, //15°
+        mensagem: "A medida a aplicar não é viável. Por favor reveja os dados inseridos e tente novamente. "
     }
 ];
 
