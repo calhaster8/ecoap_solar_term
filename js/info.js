@@ -49,7 +49,7 @@ var sistemas_prod_aqs = [
             }
         ],
         unidade: "kg",
-        fator_conversao: 4
+        fator_conversao: 4.67
     },
     {
         nome: "Caldeira (gás natural)",
