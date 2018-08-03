@@ -152,7 +152,7 @@ $(document).ready(function() {
                 digits: true
             },
             'coletores-reanalise': {
-                min: 1,
+                min: 0,
                 step: 1,
                 digits: true
             }            
