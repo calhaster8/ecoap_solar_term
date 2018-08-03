@@ -53,7 +53,7 @@ var sistemas_prod_aqs = [
     },
     {
         nome: "Caldeira (gás natural)",
-        custo_unit: 0.08, //euros
+        custo_unit: 0.10, //euros
         rendimento: [
             {
                 nome: "< 10 anos",
