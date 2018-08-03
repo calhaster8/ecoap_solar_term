@@ -503,6 +503,10 @@ body {
       .main .main-content #resumo table tbody .textTR td.sub-val {
         background-color: #eeeeff;
         display: none; }
+  .main .main-content #resumo .pop-temp {
+    color: #0099cc;
+    font-size: 1em;
+    padding-bottom: 10px; }
   .main .main-content .step {
     display: none; }
 
