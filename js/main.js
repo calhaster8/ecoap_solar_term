@@ -101,6 +101,7 @@ $(document).ready(function() {
                         return 110;
                     }
                 },
+                number: true
             },
             age: {
                 required: function (element) {
@@ -137,7 +138,8 @@ $(document).ready(function() {
                 required: true,
                 min: 0,
                 max: 100,
-                step: 1
+                step: 1,
+                number: true
             },
             'orientacao-sel':{
                 required: true
@@ -180,7 +182,8 @@ $(document).ready(function() {
                         return '<label style="font-size: 14px; color: red;">O rendimento máximo é 110%.</label>';
                     }
                 },
-                step: '<label style="font-size: 14px; color: red;">o incremento é de 0.1.</label>'
+                step: '<label style="font-size: 14px; color: red;">o incremento é de 0.1.</label>',
+                number: '<label style="font-size: 14px; color: red;">Introduza (.) em vez de (,).</label>'
             },
             age: {
                 required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>'
@@ -211,8 +214,8 @@ $(document).ready(function() {
                 required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>',
                 min: '<label style="font-size: 14px; color: red;">O mínimo é 1 ºC.</label>',
                 max: '<label style="font-size: 14px; color: red;">O máximo é 100 ºC.</label>',
-                number: '<label style="font-size: 14px; color: red;">Insira um número válido.</label>',
-                step: '<label style="font-size: 14px; color: red;">O passo de incremento é de 1 </label>',
+                number: '<label style="font-size: 14px; color: red;">Introduza (.) em vez de (,).</label>',
+                step: '<label style="font-size: 14px; color: red;">O passo de incremento é de 1 </label>'
             },
             'orientacao-sel':{
                 required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>'
