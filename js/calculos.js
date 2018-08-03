@@ -264,7 +264,7 @@ function cenarioI() {
     for (i = 0; i < meses_numero_horas.length; i++) {
 
         cenarioI_mes[i] = necessidades_mes_kWh[i] / rendCenarioI;
-        cenarioI_custos[i] = cenarioI_mes[i] * custosUnit;
+        cenarioI_custos[i] = cenarioI_mes[i] * custosUnit / sistemas_prod_aqs[sist_aqs].fator_conversao;
         total_cenarioI_mes += cenarioI_mes[i];
         total_cenarioI_custos += cenarioI_custos[i];
     }
@@ -274,6 +274,7 @@ function cenarioI() {
 function cenarioF() {
 
     var custosUnit = $("#custo-unit-input").val();
+    var sist_aqs = $("#sis_prod").val();
     cenarioF_mes = [];
     total_cenarioF_mes = 0;
     cenarioF_custos = [];
@@ -285,7 +286,7 @@ function cenarioF() {
         //cenarioF_mes[i] = totalEnergiaBackupMes[i] * fatores_conversao[1] / rendCenarioF;
         cenarioF_mes[i] = totalEnergiaBackupMes[i] * fatores_conversao[1];
         total_cenarioF_mes += cenarioF_mes[i];
-        cenarioF_custos[i] = cenarioF_mes[i] * custosUnit;
+        cenarioF_custos[i] = cenarioF_mes[i] * custosUnit / sistemas_prod_aqs[sist_aqs].fator_conversao;
         total_cenarioF_custos += cenarioF_custos[i];
     }
     total_cenarioF_custos = total_cenarioF_custos;
