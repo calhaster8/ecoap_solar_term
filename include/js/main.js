@@ -48,7 +48,7 @@ $(document).ready(function() {
                  required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>',
                  min: '<label style="font-size: 14px; color: red;">O mínimo é 1.</label>',
                  step: '<label style="font-size: 14px; color: red;">O passo de incremento é de 1.</label>',
-                 digits: '<label style="font-size: 14px; color: red;">Insera números sem casas decimais.Ex: 10</label>'
+                 digits: '<label style="font-size: 14px; color: red;">Insira números sem casas decimais.Ex: 10</label>'
             }
         });
         
@@ -173,16 +173,16 @@ $(document).ready(function() {
             },
             iRendMan: {
                 required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>',
-                min: '<label style="font-size: 14px; color: red;">O rendimento mínimo é 0%.</label>',
+                min: '<label style="font-size: 14px; color: red;">O rendimento deverá ser superior a 0%.</label>',
                 max: function (element) {
 
                     if ($("#sis_prod").val() != "" && $("#sis_prod").val() != undefined && $("#sis_prod").val() == 0) {
-                        return '<label style="font-size: 14px; color: red;">O rendimento máximo é 7.</label>';
+                        return '<label style="font-size: 14px; color: red;">O COP máximo é 7.</label>';
                     } else {
                         return '<label style="font-size: 14px; color: red;">O rendimento máximo é 110%.</label>';
                     }
                 },
-                step: '<label style="font-size: 14px; color: red;">o incremento é de 0.1.</label>',
+                step: '<label style="font-size: 14px; color: red;">O passo de incremento é de 0.1.</label>',
                 number: '<label style="font-size: 14px; color: red;">Introduza (.) em vez de (,).</label>'
             },
             age: {
@@ -192,7 +192,7 @@ $(document).ready(function() {
                 required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>',
                 number: '<label style="font-size: 14px; color: red;">Inserir um número válido. Ex: 0.10</label>',
                 step: '<label style="font-size: 14px; color: red;">o passo de incremento é de 0.00001 .</label>',
-                min: '<label style="font-size: 14px; color: red;">O mínimo é 0.00001 .</label>'
+                min: '<label style="font-size: 14px; color: red;">O custo mínimo é de 0.00001€.</label>'
             },
             'tipo-consumo1': {
                 required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>'
@@ -201,7 +201,7 @@ $(document).ready(function() {
                 required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>',
                 min: '<label style="font-size: 14px; color: red;">O mínimo é 1.</label>',
                 step: '<label style="font-size: 14px; color: red;">O passo de incremento é de 1.</label>',
-                digits: '<label style="font-size: 14px; color: red;">Insera números sem casas decimais.Ex: 10</label>'
+                digits: '<label style="font-size: 14px; color: red;">Insira números sem casas decimais. Ex: 10</label>'
             },
 
             'perfil-mensal': {
@@ -224,12 +224,12 @@ $(document).ready(function() {
                 required:  '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>',
                  min: '<label style="font-size: 14px; color: red;">O mínimo é 0 º.</label>',
                 max: '<label style="font-size: 14px; color: red;">O máximo é 70 º.</label>',
-                digits: '<label style="font-size: 14px; color: red;">Insera números sem casas decimais.Ex: 10</label>'
+                digits: '<label style="font-size: 14px; color: red;">Insira números sem casas decimais.Ex: 10</label>'
             },
             'coletores-reanalise': {
                 min: '<label style="font-size: 14px; color: red;">O mínimo é 1.</label>',
                 step: '<label style="font-size: 14px; color: red;">O passo de incremento é de 1.</label>',
-                digits: '<label style="font-size: 14px; color: red;">Insera números sem casas decimais.Ex: 10</label>'
+                digits: '<label style="font-size: 14px; color: red;">Insira números sem casas decimais.Ex: 10</label>'
             } 
         }
 

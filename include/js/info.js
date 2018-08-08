@@ -504,7 +504,7 @@ var desvios = [
 
     {
         nome: "Outra orientação (desvio de Sul)",
-        valor: "preencher"
+        valor: "Indicar desvio, em graus (º)"
     }
 ];
 

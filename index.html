@@ -4,25 +4,23 @@
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" crossorigin="anonymous"/>
-        <link href="https://fonts.googleapis.com/css?family=Montserrat:100,300,400|Open+Sans:300,400|Roboto:100,300,400" rel="stylesheet"/>
-        <link rel="stylesheet" href="https://printjs-4de6.kxcdn.com/print.min.css"/>
+        <link rel="stylesheet" href="include/css/print.min.css"/>
         <!--BOOTSTRAP CDN-->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
-        <link rel="shortcut icon" href="img/logo-head-small.png" type="image/png"/>
+        <link rel="stylesheet" href="include/css/bootstrap.min.css"/>
+        <link rel="shortcut icon" href="include/img/logo-head-small.png" type="image/png"/>
         <!--CUSTOM CSS-->
-        <link rel="stylesheet" href="css/style.css"/>
+        <link rel="stylesheet" href="include/css/style.css"/>
         <!--BOOTSTRAP + JQUERY CDN-->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="include/js/jquery.min.js"></script>
+        <script src="include/js/bootstrap.min.js"></script>
         <!--CUSTOM JS-->
-        <script src="js/main.js"></script>
-        <script src="js/info.js"></script>
-        <script src="js/calculos.js"></script>
-        <script src="js/globals.js"></script>        
-        <script src="https://printjs-4de6.kxcdn.com/print.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
-        <title>Calculadora - Solar Térmico</title>
+        <script src="include/js/main.js"></script>
+        <script src="include/js/info.js"></script>
+        <script src="include/js/calculos.js"></script>
+        <script src="include/js/globals.js"></script>        
+        <script src="include/js/print.min.js"></script>
+        <script src="include/js/jquery.validate.min.js"></script>
+        <title>ECO.AP - Calculadora - Solar Térmico</title>
     </head>
     <body>
         <header class="header">
@@ -75,7 +73,7 @@
                                             <option value="1">Não conhece</option>
                                             <option value="2">Inserir rendimento</option>
                                         </select>
-                                        <label id="labelIRendman" for="iRendMan" style="display:none;">Insira o rendimento</label>
+                                        <label id="labelIRendman" for="iRendMan" style="display:none;">Insira o rendimento (%)</label>
                                         <input id="iRendMan" type="number" name="iRendMan" placeholder=""  min="0" step="0.1" style="display:none;"/>
                                     </div>
                                     <div class="dado age">
@@ -240,7 +238,7 @@
                                         <table class="table table-bordered">
                                             <tbody>
                                                 <tr class="textTR">
-                                                    <td rowspan="2" class="in">Orientação solar</td>
+                                                    <td rowspan="2" class="in">Orientação solar (aprox.)</td>
                                                     <td class="select-cell">
                                                         <select id="orientacao-sel" name="orientacao-sel">
                                                             <option value="">Seleccionar opção</option>
@@ -259,7 +257,7 @@
                                     <div class="dado inclinacao">
                                         <label for="inclinacao">Inclinação</label>
                                         <input id="inclinacao-input" type="number" value="" placeholder="Valor será introduzindo automaticamente" class="form-control xInput" disabled="disabled"/>
-                                        <span class="pop-inclinacao">*Esta inclinação depende da latitude</span>
+                                        <span class="pop-inclinacao">* A inclinação depende da latitude</span>
                                     </div>
                                 </div>
                             </div>
