@@ -355,7 +355,7 @@ function resume(){
     //excedente_verao = (max(excedenteSolarPerc) > avisos[0].valor) ? max(excedenteSolarPerc) : "";
     //se o excende de verão for maior do que aviso[0].valor então mostra esta informação no resumo, senão não mostra nada
 
-    excedente_verao = (max(totalExcedenteSolarArrayPerc) > avisos[0].valor) ? max(totalExcedenteSolarArrayPerc) : "";
+    excedente_verao = max(totalExcedenteSolarArrayPerc);
     excedente_verao_perc = excedente_verao * 100;
 
     fracao_solar = totalEnergiaSolarPerc * 100;
