@@ -54,7 +54,6 @@ var total_reducao_mes = 0;
 var reducao_percent = [];
 var total_reduca_percent = 0;
 
-// resume vars
 var n_colectores = 0;
 var area_colectores = 0;
 var volume_acumulacao =0;

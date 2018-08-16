@@ -18,8 +18,6 @@ $(document).ready(function() {
     $('#perfil-semanal').change(getPerfilSemanal);
     $('#orientacao-sel').change(getDesvios);
 
-
-
     $('#perfil-semanal').change(function() {
         var idLocal = $('#perfil-semanal').val();
         
@@ -29,7 +27,6 @@ $(document).ready(function() {
             $('#perfil-semanal').css('width', '52%');
         }
     });
-    
     
     $('#add').on('click', function () {
         rowId++;
@@ -46,9 +43,9 @@ $(document).ready(function() {
             digits: true,
             messages: {
                  required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>',
-                 min: '<label style="font-size: 14px; color: red;">O mínimo é 1.</label>',
-                 step: '<label style="font-size: 14px; color: red;">O passo de incremento é de 1.</label>',
-                 digits: '<label style="font-size: 14px; color: red;">Insira números sem casas decimais.Ex: 10</label>'
+                 min: '<label style="font-size: 14px; color: red;">O valor mínimo é 1</label>',
+                 step: '<label style="font-size: 14px; color: red;">Introduza números inteiros</label>',
+                 digits: '<label style="font-size: 14px; color: red;">Introduza números inteiros</label>'
             }
         });
         
@@ -59,6 +56,7 @@ $(document).ready(function() {
             }
         });
     });
+	
     $(document).on('click', '#remove', function () {
         rowId--;
         
@@ -72,7 +70,6 @@ $(document).ready(function() {
     
     $("#solar-termico").validate({
         rules: {
-            //passo 2
             distrito: {
                 required: true
             },
@@ -92,7 +89,7 @@ $(document).ready(function() {
                     }
                 },
                 step: 0.1,
-                min: 0,
+                min: 1,
                 max: function (element) {
 
                     if ($("#sis_prod").val() != "" && $("#sis_prod").val() != undefined && $("#sis_prod").val() == 0) {
@@ -116,7 +113,7 @@ $(document).ready(function() {
                 required: true,
                 number: true,
                 step: 0.01,
-                min: 0
+                min: 0.01
             },
             'tipo-consumo1': {
                 required: true
@@ -125,9 +122,9 @@ $(document).ready(function() {
                 required: true,
                 min: 1,
                 step: 1,
-                digits: true
+                digits: true,
+				number: true
             },
-
             'perfil-mensal': {
                 required: true
             },
@@ -149,19 +146,16 @@ $(document).ready(function() {
                 min: 0,
                 max: 70, 
                 step: 1,
-                digits: true
+                digits: true,
+				number: true
             },
             'coletores-reanalise': {
                 min: 0,
                 step: 1,
                 digits: true
             }            
-            //passo 3
-            
-
         },
         messages: {
-            //passo 2
             distrito: {
                 required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>'
             },
@@ -173,35 +167,36 @@ $(document).ready(function() {
             },
             iRendMan: {
                 required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>',
-                min: '<label style="font-size: 14px; color: red;">O rendimento deverá ser superior a 0%.</label>',
+                min: '<label style="font-size: 14px; color: red;">O valor mínimo é 1</label>',
                 max: function (element) {
 
                     if ($("#sis_prod").val() != "" && $("#sis_prod").val() != undefined && $("#sis_prod").val() == 0) {
-                        return '<label style="font-size: 14px; color: red;">O COP máximo é 7.</label>';
+                        return '<label style="font-size: 14px; color: red;">O COP máximo é 7</label>';
                     } else {
-                        return '<label style="font-size: 14px; color: red;">O rendimento máximo é 110%.</label>';
+                        return '<label style="font-size: 14px; color: red;">O rendimento máximo é 110%</label>';
                     }
                 },
-                step: '<label style="font-size: 14px; color: red;">O passo de incremento é de 0.1.</label>',
-                number: '<label style="font-size: 14px; color: red;">Introduza (.) em vez de (,).</label>'
+                step: '<label style="font-size: 14px; color: red;">O passo de incremento é de 0.1</label>',
+                number: '<label style="font-size: 14px; color: red;">Introduza (.) em vez de (,)</label>'
             },
             age: {
                 required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>'
             },
             'custo-unit-input': {
                 required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>',
-                number: '<label style="font-size: 14px; color: red;">Inserir um número válido. Ex: 0.10</label>',
-                step: '<label style="font-size: 14px; color: red;">o passo de incremento é de 0.00001 .</label>',
-                min: '<label style="font-size: 14px; color: red;">O custo mínimo é de 0.00001€.</label>'
+                number: '<label style="font-size: 14px; color: red;">Introduza (.) em vez de (,)</label>',
+                step: '<label style="font-size: 14px; color: red;">O passo de incremento é de 0.01</label>',
+                min: '<label style="font-size: 14px; color: red;">O custo mínimo é de 0.01€</label>'
             },
             'tipo-consumo1': {
                 required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>'
             },
             'tipo-consumo-value1': {
                 required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>',
-                min: '<label style="font-size: 14px; color: red;">O mínimo é 1.</label>',
-                step: '<label style="font-size: 14px; color: red;">O passo de incremento é de 1.</label>',
-                digits: '<label style="font-size: 14px; color: red;">Insira números sem casas decimais. Ex: 10</label>'
+                min: '<label style="font-size: 14px; color: red;">O valor mínimo é 1</label>',
+                step: '<label style="font-size: 14px; color: red;">Introduza números inteiros</label>',
+                digits: '<label style="font-size: 14px; color: red;">Introduza números inteiros</label>',
+				number: '<label style="font-size: 14px; color: red;">Introduza números inteiros</label>'
             },
 
             'perfil-mensal': {
@@ -212,27 +207,27 @@ $(document).ready(function() {
             },
             'temp-req':{
                 required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>',
-                min: '<label style="font-size: 14px; color: red;">O mínimo é 1 ºC.</label>',
-                max: '<label style="font-size: 14px; color: red;">O máximo é 100 ºC.</label>',
-                number: '<label style="font-size: 14px; color: red;">Introduza (.) em vez de (,).</label>',
-                step: '<label style="font-size: 14px; color: red;">O passo de incremento é de 1 </label>'
+                min: '<label style="font-size: 14px; color: red;">O mínimo é 1 ºC</label>',
+                max: '<label style="font-size: 14px; color: red;">O máximo é 100 ºC</label>',
+                number: '<label style="font-size: 14px; color: red;">Introduza números inteiros</label>',
+                step: '<label style="font-size: 14px; color: red;">Introduza números inteiros</label>'
             },
             'orientacao-sel':{
                 required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>'
             },
             'orientacao-input':{
                 required:  '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>',
-                 min: '<label style="font-size: 14px; color: red;">O mínimo é 0 º.</label>',
-                max: '<label style="font-size: 14px; color: red;">O máximo é 70 º.</label>',
-                digits: '<label style="font-size: 14px; color: red;">Insira números sem casas decimais.Ex: 10</label>'
+                min: '<label style="font-size: 14px; color: red;">O mínimo é 0 º</label>',
+                max: '<label style="font-size: 14px; color: red;">O máximo é 70 º</label>',
+                digits: '<label style="font-size: 14px; color: red;">Introduza números inteiros</label>',
+				number: '<label style="font-size: 14px; color: red;">Introduza números inteiros</label>'
             },
             'coletores-reanalise': {
-                min: '<label style="font-size: 14px; color: red;">O mínimo é 1.</label>',
-                step: '<label style="font-size: 14px; color: red;">O passo de incremento é de 1.</label>',
-                digits: '<label style="font-size: 14px; color: red;">Insira números sem casas decimais.Ex: 10</label>'
+                min: '<label style="font-size: 14px; color: red;">O mínimo é 1 coletor</label>',
+                step: '<label style="font-size: 14px; color: red;">Introduza números inteiros</label>',
+                digits: '<label style="font-size: 14px; color: red;">Introduza números inteiros</label>'
             } 
         }
-
     });
 
     $(".seguinte").click(function () {
@@ -245,8 +240,7 @@ $(document).ready(function() {
             totalNecessidadesEnergiaFunction();
         }
     });
-    
-    
+        
     $("#reanalise-but").click(function(){
         if ($("#solar-termico").valid()) {
             totalNecessidadesEnergiaFunction();
@@ -256,7 +250,6 @@ $(document).ready(function() {
     $('#reload-but').click(function(){
         location.reload();
     });
-    
 });
 
 function buildDistrito() {
@@ -287,7 +280,7 @@ function getSistemasProdAQSValues() {
         $("#iRendMan").hide();
         $("#iRendMan").val("");
         $("#iRendMan").removeAttr("disabled");
-        $("#iRendMan").attr("placeholder", "0");
+        $("#iRendMan").attr("placeholder", "0.0");
         $('#rend').find("option[value='2']").html("Inserir COP");
     } else if (id != "" && id != undefined && id > 0) {
         $("#labelRendimento").html("Rendimento (%)");
@@ -383,7 +376,6 @@ function getPerfilMensal() {
         $('.table-mensal').addClass('hide-perfil-mensal');
     }
 
-    //CHAMAR FUNCAO
     getInclinacao();
 }
 
@@ -428,13 +420,9 @@ function getInclinacao() {
     $('#inclinacao-input').attr("value", irradiacao_temp_amb_temp_agua[idDist].latitude + perfil_mensal[idPerfil].latitude);
 }
 
-
-
-// BUTTONS STEPS
 function nextStep() {
     var id = $('.step:visible').data('id');
     var nextId = $('.step:visible').data('id') + 1;
-    
 
     if ($('#menu-choice-sel').val() == 0) {
         $('[data-id="' + id + '"]').hide();
@@ -466,8 +454,6 @@ function nextStep() {
     }
 }
 
-
-//STEPS
 function prevStep() {
     var id = $('.step:visible').data('id');
     var prevId = $('.step:visible').data('id') - 1;
@@ -492,5 +478,4 @@ function prevStep() {
         $('.end-step').show();
         $('.end-but').show();
     }
-
 }

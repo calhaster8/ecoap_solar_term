@@ -5,9 +5,7 @@ function getCustomizedPerfilMensal(idPerfilMensal, i){
     }else{
         return new Number($('#perfil-mensal-input' + (i + 1) ).val())/100;
     }
-
 }
-
 
 function totalNecessidadesEnergiaFunction() {
     var idPerfilMensal = new Number($('#perfil-mensal').val());
@@ -41,7 +39,6 @@ function totalNecessidadesEnergiaFunction() {
         }
         necessidades_mes[i] = calculos * (getCustomizedPerfilMensal(idPerfilMensal, i) * perfilVal) * meses_numero_horas[i].n_dias * (tmpReq - irradiacao_temp_amb_temp_agua[idDistrito].mesI[i].valorTempAgua) * fatores_conversao[0];
         totalNecessidadesEnergia += new Number(necessidades_mes[i]);
-
     }
 
     total = totalNecessidadesEnergia;
@@ -118,7 +115,6 @@ function media(el){
     return media/5;
 }
 
-
 function energiaSolarCaptada2() {
     var coletores_reanalise = $('#coletores-reanalise').val();
 
@@ -132,8 +128,7 @@ function energiaSolarCaptada2() {
         } else {
             totalEnergiaArray2[i] = totalEnergiaArray[i] * coletores_reanalise*2.25;
         }
-        
-        totalEnergia2 += totalEnergiaArray2[i];
+                totalEnergia2 += totalEnergiaArray2[i];
     }
 }
 
@@ -148,8 +143,7 @@ function energiaSolarUtilizada() {
         }else{
             totalEnergiaSolarUtilizada[i] = totalEnergiaArray2[i];
         }
-        
-        totalEnergiaSolar += totalEnergiaSolarUtilizada[i];
+                totalEnergiaSolar += totalEnergiaSolarUtilizada[i];
     }
 }
 
@@ -188,7 +182,6 @@ function energiaBackup() {
         } else {
             totalEnergiaBackupMes[i] = (necessidades_mes[i] - totalEnergiaArray2[i])/rendFinal;
         }
-
         totalEnergiaBackup += totalEnergiaBackupMes[i];
     }
 }
@@ -223,10 +216,8 @@ function excedenteSolarPerc() {
 
     for (i = 0; i < meses_numero_horas.length; i++) {
         totalExcedenteSolarArrayPerc[i] = totalExcedenteSolarArray[i] / totalEnergiaArray2[i];
-        
     }
     totalExcedenteSolarPerc = totalExcedenteSolar/totalEnergia2;
-    
 }
 
 function necessidadesEnergeticaskWh(){
@@ -237,9 +228,7 @@ function necessidadesEnergeticaskWh(){
         necessidades_mes_kWh[i] = necessidades_mes[i] * fatores_conversao[1];
         total_mes_kWh += necessidades_mes_kWh[i];
     }
-    
 }
-
 
 function cenarioI() {
     var inputRendimento = ($("#rend").val() == 2) ? $('#iRendMan').val() : $("#rend").val();
@@ -279,20 +268,16 @@ function cenarioF() {
     total_cenarioF_mes = 0;
     cenarioF_custos = [];
     total_cenarioF_custos = 0;
-   
 
     for (i = 0; i < meses_numero_horas.length; i++) {
 
-        //cenarioF_mes[i] = totalEnergiaBackupMes[i] * fatores_conversao[1] / rendCenarioF;
         cenarioF_mes[i] = totalEnergiaBackupMes[i] * fatores_conversao[1];
         total_cenarioF_mes += cenarioF_mes[i];
         cenarioF_custos[i] = cenarioF_mes[i] * custosUnit / sistemas_prod_aqs[sist_aqs].fator_conversao;
         total_cenarioF_custos += cenarioF_custos[i];
     }
     total_cenarioF_custos = total_cenarioF_custos;
-
 }
-
 
 function reduction(){
     reducao_mes = [];
@@ -305,16 +290,12 @@ function reduction(){
         reducao_mes[i] = cenarioI_custos[i]-cenarioF_custos[i];
         total_reducao_mes += reducao_mes[i];
         reducao_percent[i] = reducao_mes[i] / cenarioI_custos[i];
-       
     }
     total_reduca_percent = total_reducao_mes/total_cenarioI_custos;
 }
 
-
-
 function resume(){
 
-    // resume vars
     n_colectores = 0;
     area_colectores = 0;
     volume_acumulacao_resume = 0;
@@ -334,12 +315,7 @@ function resume(){
     periodo_retorno = 0;
 
     var inputColetores = $("#coletores-reanalise").val();
-
-    //esta nao da
-    //n_colectores = (inputColetores != undefined && !empty(inputColetores)) ? new Number(inputColetores) : new Number(totalRacio/area_coletor_solar).toFixed(0);
-    //area_colectores = (inputColetores != undefined && !empty(inputColetores)) ? new Number(n_colectores * area_coletor_solar).toFixed(2) : new Number(inputColetores * area_coletor_solar).toFixed(2);
-    
-    //esta da
+   
     n_colectores = (inputColetores != undefined && inputColetores != "") ? new Number(inputColetores) : new Number((totalRacio / area_coletor_solar).toFixed(0));
     if(n_colectores<avisos[5].valor){
         alert(avisos[5].mensagem);
@@ -351,9 +327,6 @@ function resume(){
     necess_ener_anuais = total * fatores_conversao[1];
     energia_solar = totalEnergiaSolar * fatores_conversao[1];
     energia_sist_apoio = totalEnergiaBackup * fatores_conversao[1];
-
-    //excedente_verao = (max(excedenteSolarPerc) > avisos[0].valor) ? max(excedenteSolarPerc) : "";
-    //se o excende de verão for maior do que aviso[0].valor então mostra esta informação no resumo, senão não mostra nada
 
     excedente_verao = max(totalExcedenteSolarArrayPerc);
     excedente_verao_perc = excedente_verao * 100;
