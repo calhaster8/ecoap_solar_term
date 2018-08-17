@@ -149,10 +149,11 @@ $(document).ready(function() {
                 digits: true,
 				number: true
             },
-            'coletores-reanalise': {
-                min: 0,
+            'coletores-reanalise':{
+                min: 1,
                 step: 1,
-                digits: true
+                digits: true,
+				number: true
             }            
         },
         messages: {
@@ -177,14 +178,14 @@ $(document).ready(function() {
                     }
                 },
                 step: '<label style="font-size: 14px; color: red;">O passo de incremento é de 0.1</label>',
-                number: '<label style="font-size: 14px; color: red;">Introduza (.) em vez de (,)</label>'
+                number: '<label style="font-size: 14px; color: red;">Introduza números com (.) em vez de (,)</label>'
             },
             age: {
                 required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>'
             },
             'custo-unit-input': {
                 required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>',
-                number: '<label style="font-size: 14px; color: red;">Introduza (.) em vez de (,)</label>',
+                number: '<label style="font-size: 14px; color: red;">Introduza números com (.) em vez de (,)</label>',
                 step: '<label style="font-size: 14px; color: red;">O passo de incremento é de 0.01</label>',
                 min: '<label style="font-size: 14px; color: red;">O custo mínimo é de 0.01€</label>'
             },
@@ -198,7 +199,6 @@ $(document).ready(function() {
                 digits: '<label style="font-size: 14px; color: red;">Introduza números inteiros</label>',
 				number: '<label style="font-size: 14px; color: red;">Introduza números inteiros</label>'
             },
-
             'perfil-mensal': {
                 required: '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>'
             },
@@ -219,13 +219,15 @@ $(document).ready(function() {
                 required:  '<label style="font-size: 14px; color: red;">Este campo é obrigatório.</label>',
                 min: '<label style="font-size: 14px; color: red;">O mínimo é 0 º</label>',
                 max: '<label style="font-size: 14px; color: red;">O máximo é 70 º</label>',
+				step: '<label style="font-size: 14px; color: red;">Introduza números inteiros</label>',
                 digits: '<label style="font-size: 14px; color: red;">Introduza números inteiros</label>',
 				number: '<label style="font-size: 14px; color: red;">Introduza números inteiros</label>'
             },
-            'coletores-reanalise': {
+            'coletores-reanalise':{
                 min: '<label style="font-size: 14px; color: red;">O mínimo é 1 coletor</label>',
                 step: '<label style="font-size: 14px; color: red;">Introduza números inteiros</label>',
-                digits: '<label style="font-size: 14px; color: red;">Introduza números inteiros</label>'
+                digits: '<label style="font-size: 14px; color: red;">Introduza números inteiros</label>',
+				number: '<label style="font-size: 14px; color: red;">Introduza números inteiros</label>'
             } 
         }
     });
@@ -281,18 +283,18 @@ function getSistemasProdAQSValues() {
         $("#iRendMan").val("");
         $("#iRendMan").removeAttr("disabled");
         $("#iRendMan").attr("placeholder", "0.0");
-        $('#rend').find("option[value='2']").html("Inserir COP");
+        $('#rend').find("option[value='2']").html("Inserir COP (Ex: 3.2)");
     } else if (id != "" && id != undefined && id > 0) {
         $("#labelRendimento").html("Rendimento (%)");
         $("#rend").val("");
-        $("#labelIRendman").html("Insira o rendimento");
+        //$("#labelIRendman").html("Insira o rendimento");
         $("#age").val("");
         $("#labelIRendman").hide();
         $("#iRendMan").hide();
         $("#iRendMan").val("");
         $("#iRendMan").removeAttr("disabled");
         $("#iRendMan").attr("placeholder", "0%");
-        $('#rend').find("option[value='2']").html("Inserir rendimento");
+        $('#rend').find("option[value='2']").html("Inserir rendimento (%)");
     } else {
         $("#labelRendimento").html("Rendimento (%) / COP");
         $("#rend").val("");
@@ -302,7 +304,7 @@ function getSistemasProdAQSValues() {
         $("#iRendMan").hide();
         $("#iRendMan").val("");
         $("#iRendMan").removeAttr("disabled");
-        $('#rend').find("option[value='2']").html("Inserir rendimento");
+        $('#rend').find("option[value='2']").html("Inserir rendimento (%) / COP");
     }
 
     if (id != "" && id != undefined && id >= 0) {
@@ -320,13 +322,13 @@ function getCopRendValues() {
     var idLocal = $('#sis_prod').val();
     var selectedRend = $('#rend').val();
     if (selectedRend != "" && selectedRend != undefined && selectedRend == 2 && idLocal == 0 && idLocal != "" && idLocal != undefined) {
-        $('#rend').find("option[value='2']").html("Inserir COP");
+        $('#rend').find("option[value='2']").html("Inserir COP (Ex: 3.2)");
         $('#iRendMan').show();
         $('#iRendMan').attr('max','7');
         $('.age').hide();
         $('#age').val("");
     } else if (selectedRend != "" && selectedRend != undefined && selectedRend == 2 && idLocal > 0 && idLocal != "" && idLocal != undefined) {
-        $('#rend').find("option[value='2']").html("Inserir rendimento");
+        $('#rend').find("option[value='2']").html("Inserir rendimento (%)");
         $('#iRendMan').show();
         $('#iRendMan').attr('max','100');
         $('.age').hide();
@@ -337,10 +339,10 @@ function getCopRendValues() {
         $('#age').show();
         $('#age').val("");
         $('#iRendMan').hide();
-        $('#labelIRendman').hide();
+        //$('#labelIRendman').hide();
     } else {
         $('#iRendMan').hide();
-        $('#labelIRendman').hide();
+        //$('#labelIRendman').hide();
         $('.age').hide();
         $('#age').val("");
     }
@@ -375,7 +377,6 @@ function getPerfilMensal() {
     } else {
         $('.table-mensal').addClass('hide-perfil-mensal');
     }
-
     getInclinacao();
 }
 
