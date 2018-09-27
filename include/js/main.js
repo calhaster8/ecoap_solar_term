@@ -436,11 +436,13 @@ function nextStep() {
         if (nextId < 4) {
             $('.but-2').show();
             $('.end-step').hide();
+            $('#disclaimer').hide();
         }
 
         if (nextId == 3) {
             $('.but-2').hide();
             $('.end-step').show();
+            $('#disclaimer').hide();
         }
 
         if (nextId == 4 || nextId == 5) {   
@@ -451,8 +453,11 @@ function nextStep() {
             $('#reanalise-but').show();
             $('#reload-but').show();
             $('.end-but').hide();
+            $('#disclaimer').show();
         }
     }
+    
+    location.hash = "html";
 }
 
 function prevStep() {
@@ -463,11 +468,13 @@ function prevStep() {
 
     if (prevId == 1) {
         $('.anterior').hide();
+        $('#disclaimer').hide();
     }
 
     if (prevId < 3) {
         $('.but-2').show();
         $('.end-step').hide();
+        $('#disclaimer').hide();
     }
 
     if (prevId == 3) {
@@ -478,5 +485,8 @@ function prevStep() {
         $('#coletores-reanalise').val("");
         $('.end-step').show();
         $('.end-but').show();
+        $('#disclaimer').hide();
     }
+    
+    location.hash = "html";
 }
