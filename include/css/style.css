@@ -12,6 +12,10 @@
   font-weight: bold;
   src: url("../fonts/Amelia/Amelia-Basic-Bold.otf"); }
 
+.table {
+  width: 60%; /* 100% */
+}
+
 * {
   margin: 0;
   padding: 0; }
@@ -92,7 +96,7 @@ body {
         color: #0099cc;
         font-weight: 400; }
       .main .main-content .dados-child .dado input {
-        width: 52%;
+        width: 50%; /* 52% */
         padding: 5px 20px;
         font-size: .8em;
         border: none;
@@ -115,7 +119,7 @@ body {
       .main .main-content .dados-child .dado input:focus {
         outline: none; }
       .main .main-content .dados-child .dado .sel {
-        width: 52%;
+        width: 50%; /* 52% */
         -webkit-appearance: none;
         -moz-appearance: none;
         background: url("../img/seta.png") no-repeat 95% center;
@@ -235,7 +239,7 @@ body {
           vertical-align: middle; }
           .main .main-content .dados-child .tabela-diaria table tbody tr td.select-cell select,
           .main .main-content .dados-child .tabela-diaria table tbody .textTR td.select-cell select {
-            width: 100%;
+            width: 100%; /* 100% */
             border: none;
             background-color: transparent;
             text-align-last: center; }
@@ -428,7 +432,7 @@ body {
           .main .main-content .dados-child .tabelas table tbody .textTR td.select-cell select,
           .main .main-content .dados-child .tabela-diaria table tbody tr td.select-cell select,
           .main .main-content .dados-child .tabela-diaria table tbody .textTR td.select-cell select {
-            width: 100%;
+            width: 100%; /* 100% */
             border: none;
             background-color: transparent;
             text-align-last: center; }
@@ -444,7 +448,7 @@ body {
               text-align-last: center; }
   .main .main-content #resumo table {
     background-color: #f2f2f2;
-    width: 50%; }
+    width: 100%; }
     @media screen and (max-width: 768px) {
       .main .main-content #resumo table {
         width: 100%; } }
@@ -548,3 +552,30 @@ button.print_link {
 
 .step-but {
   display: none; }
+
+/* Final CSS After Graph */
+.resume-buttons-padding {
+  padding: 0;
+}
+
+#resume-new-div {
+  width: 100%;
+}
+
+/* Media Queries against bootstrap */
+@media screen and (min-width: 1400px) {
+  .container {
+    width: 100%;
+  }
+
+  .main {
+    padding: 0 70px 70px 70px;
+    margin: 0;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  #resume-new-div {
+    width: 80%;
+  }
+}

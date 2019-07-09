@@ -20,6 +20,7 @@
         <script src="include/js/globals.js"></script>        
         <script src="include/js/print.min.js"></script>
         <script src="include/js/jquery.validate.min.js"></script>
+        <script src="./node_modules/chart.js/dist/Chart.bundle.js"></script>
         <title>ECO.AP - Calculadora - Solar Térmico</title>
     </head>
     <body>
@@ -263,82 +264,87 @@
                             </div>
                             <div id="resumo" data-id="4" class="step">
                                 <div class="dados-titulo"><span>Resumo - Resultados</span></div>
+
                                 <div class="dados-child">
-                                    <table class="table table-bordered">
-                                        <tbody>
-                                            <tr class="textTR">
-                                                <td class="in">N.° de coletores solares</td>
-                                                <td id="n-coletores-resumo" class="center"></td>
-                                            </tr>
-                                            <tr class="textTR">
-                                                <td class="in">Área ocupada pelo solar térmico</td>
-                                                <td id="area-resumo" class="center"></td>
-                                            </tr>
-                                            <tr class="textTR">
-                                                <td class="in">Volume dos depósitos de acumulação</td>
-                                                <td id="volume-resumo" class="center"></td>
-                                            </tr>
-                                            <tr class="textTR">
-                                                <td class="in">Necessidades energéticas anuais</td>
-                                                <td id="nec-ener-resumo" class="center"></td>
-                                            </tr>
-                                            <tr class="textTR">
-                                                <td class="in">Energia produzida pelo solar térmico</td>
-                                                <td id="ener-solar-resumo" class="center"></td>
-                                            </tr>
-                                            <tr class="textTR">
-                                                <td class="in">Consumo de energia (sistema de apoio)</td>
-                                                <td id="ener-backup-resumo" class="center"></td>
-                                            </tr>
-                                            <tr class="textTR">
-                                                <td class="in">Excedente de energia (no verão)</td>
-                                                <td id="excedente-resumo" class="center"></td>
-                                            </tr>
-                                            <tr class="textTR">
-                                                <td class="in">Contributo do solar térmico</td>
-                                                <td id="fracao-resumo" class="center"></td>
-                                            </tr>
-                                            <tr class="titulo_row">
-                                                <th colspan="2" class="tituloTH">Resultados</th>
-                                            </tr>
-                                            <tr class="textTR">
-                                                <td class="in">Custos energéticos (cenário inicial - sem solar térmico)</td>
-                                                <td id="s-sistema-resumo" class="center"></td>
-                                            </tr>
-                                            <tr class="textTR">
-                                                <td class="in">Custos energéticos (cenário final - com solar térmico)</td>
-                                                <td id="c-sistema-resumo" class="center"></td>
-                                            </tr>
-                                            <tr class="textTR">
-                                                <td class="in">Redução anual da fatura energética</td>
-                                                <td id="reduc-anual-resumo" class="center"></td>
-                                            </tr>
-                                            <tr class="textTR">
-                                                <td class="in">Investimento estimado *</td>
-                                                <td id="investimento-resumo" class="center"></td>
-                                            </tr>
-                                            <tr class="textTR">
-                                                <td class="in sub">Coletores</td>
-                                                <td id="coletores-resumo" class="center sub-val"></td>
-                                            </tr>
-                                            <tr class="textTR">
-                                                <td class="in sub">Depósitos e acessórios</td>
-                                                <td id="deposito-resumo" class="center sub-val"></td>
-                                            </tr>
-                                            <tr class="textTR">
-                                                <td class="in sub">Instalação</td>
-                                                <td id="instalacao-resumo" class="center sub-val"></td>
-                                            </tr>
-                                            <tr class="textTR">
-                                                <td class="in">Custos anuais com operação e manutenção</td>
-                                                <td id="operacao-resumo" class="center"></td>
-                                            </tr>
-                                            <tr class="textTR">
-                                                <td class="in">Período de retorno</td>
-                                                <td id="periodo-resumo" class="center"></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                    <div class="row">
+                                        <div class="col-lg-8 col-md-8 col-sm-12">
+                                            <div id="resume-new-div">
+                                                <table class="table table-bordered">
+                                                    <tbody>
+                                                        <tr class="textTR">
+                                                            <td class="in">N.° de coletores solares</td>
+                                                            <td id="n-coletores-resumo" class="center"></td>
+                                                        </tr>
+                                                        <tr class="textTR">
+                                                            <td class="in">Área ocupada pelo solar térmico</td>
+                                                            <td id="area-resumo" class="center"></td>
+                                                        </tr>
+                                                        <tr class="textTR">
+                                                            <td class="in">Volume dos depósitos de acumulação</td>
+                                                            <td id="volume-resumo" class="center"></td>
+                                                        </tr>
+                                                        <tr class="textTR">
+                                                            <td class="in">Necessidades energéticas anuais</td>
+                                                            <td id="nec-ener-resumo" class="center"></td>
+                                                        </tr>
+                                                        <tr class="textTR">
+                                                            <td class="in">Energia produzida pelo solar térmico</td>
+                                                            <td id="ener-solar-resumo" class="center"></td>
+                                                        </tr>
+                                                        <tr class="textTR">
+                                                            <td class="in">Consumo de energia (sistema de apoio)</td>
+                                                            <td id="ener-backup-resumo" class="center"></td>
+                                                        </tr>
+                                                        <tr class="textTR">
+                                                            <td class="in">Excedente de energia (no verão)</td>
+                                                            <td id="excedente-resumo" class="center"></td>
+                                                        </tr>
+                                                        <tr class="textTR">
+                                                            <td class="in">Contributo do solar térmico</td>
+                                                            <td id="fracao-resumo" class="center"></td>
+                                                        </tr>
+                                                        <tr class="titulo_row">
+                                                            <th colspan="2" class="tituloTH">Resultados</th>
+                                                        </tr>
+                                                        <tr class="textTR">
+                                                            <td class="in">Custos energéticos (cenário inicial - sem solar térmico)</td>
+                                                            <td id="s-sistema-resumo" class="center"></td>
+                                                        </tr>
+                                                        <tr class="textTR">
+                                                            <td class="in">Custos energéticos (cenário final - com solar térmico)</td>
+                                                            <td id="c-sistema-resumo" class="center"></td>
+                                                        </tr>
+                                                        <tr class="textTR">
+                                                            <td class="in">Redução anual da fatura energética</td>
+                                                            <td id="reduc-anual-resumo" class="center"></td>
+                                                        </tr>
+                                                        <tr class="textTR">
+                                                            <td class="in">Investimento estimado *</td>
+                                                            <td id="investimento-resumo" class="center"></td>
+                                                        </tr>
+                                                        <tr class="textTR">
+                                                            <td class="in sub">Coletores</td>
+                                                            <td id="coletores-resumo" class="center sub-val"></td>
+                                                        </tr>
+                                                        <tr class="textTR">
+                                                            <td class="in sub">Depósitos e acessórios</td>
+                                                            <td id="deposito-resumo" class="center sub-val"></td>
+                                                        </tr>
+                                                        <tr class="textTR">
+                                                            <td class="in sub">Instalação</td>
+                                                            <td id="instalacao-resumo" class="center sub-val"></td>
+                                                        </tr>
+                                                        <tr class="textTR">
+                                                            <td class="in">Custos anuais com operação e manutenção</td>
+                                                            <td id="operacao-resumo" class="center"></td>
+                                                        </tr>
+                                                        <tr class="textTR">
+                                                            <td class="in">Período de retorno</td>
+                                                            <td id="periodo-resumo" class="center"></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+
                                     <div class="pop-temp">* O investimento estimado incorpora os custos com os coletores solares, com depósitos e/ou acessórios e os respetivos custos de instalação.</div>
 
 
@@ -352,10 +358,15 @@
 
                                 </div>
                             </div>
+
+                            <div class="col-lg-4 col-md-4 col-sm-12">
+                                <canvas id="geralChart" width="400" height="400"></canvas>
+                                <canvas id="custosChart" width="400" height="400"></canvas>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row" id="resume-buttons-hide">
                     <div class="col-md-4">
                         <div class="but-2">
                             <button type="button" onclick="prevStep()" class="but anterior">Anterior</button>
