@@ -18,8 +18,9 @@
         <script src="include/js/info.js"></script>
         <script src="include/js/calculos.js"></script>
         <script src="include/js/globals.js"></script>        
-        <script src="include/js/print.min.js"></script>
+        <!--<script src="include/js/print.min.js"></script>-->
         <script src="include/js/jquery.validate.min.js"></script>
+        <script src="./node_modules/print-js/dist/print.js"></script>
         <script src="./node_modules/chart.js/dist/Chart.bundle.js"></script>
         <title>ECO.AP - Calculadora - Solar Térmico</title>
     </head>
@@ -304,7 +305,7 @@
                                                             <td id="fracao-resumo" class="center"></td>
                                                         </tr>
                                                         <tr class="titulo_row">
-                                                            <th colspan="2" class="tituloTH">Resultados</th>
+                                                            <th colspan="2" class="tituloTH">Análise Financeira</th>
                                                         </tr>
                                                         <tr class="textTR">
                                                             <td class="in">Custos energéticos (cenário inicial - sem solar térmico)</td>
@@ -344,24 +345,27 @@
                                                         </tr>
                                                     </tbody>
                                                 </table>
+                                        
+                                                <div class="pop-temp">* O investimento estimado incorpora os custos com os coletores solares, com depósitos e/ou acessórios e os respetivos custos de instalação.</div>
 
-                                    <div class="pop-temp">* O investimento estimado incorpora os custos com os coletores solares, com depósitos e/ou acessórios e os respetivos custos de instalação.</div>
 
+                                                <span class="area-note"></span>
+                                                <span class="excedente-note"></span>
 
-                                    <span class="area-note"></span>
-                                    <span class="excedente-note"></span>
+                                                <div class="dado coletores-reanalise">
+                                                    <label for="coletores-reanalise">Redimensionar solar térmico: corrigir n.° de coletores</label>
+                                                    <input id="coletores-reanalise" name="coletores-reanalise" min="1" step="1" type="number" placeholder="0" class="form-control xInput"/>
+                                                </div>
 
-                                    <div class="dado coletores-reanalise">
-                                        <label for="coletores-reanalise">Redimensionar solar térmico: corrigir n.° de coletores</label>
-                                        <input id="coletores-reanalise" name="coletores-reanalise" min="1" step="1" type="number" placeholder="0" class="form-control xInput"/>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-4 col-md-4 col-sm-12 final-graph">
+                                            <canvas id="custosChart" width="400" height="400"></canvas>
+                                            <canvas id="geralChart" width="400" height="400"></canvas>
+                                        </div>
                                     </div>
-
                                 </div>
-                            </div>
-
-                            <div class="col-lg-4 col-md-4 col-sm-12">
-                                <canvas id="geralChart" width="400" height="400"></canvas>
-                                <canvas id="custosChart" width="400" height="400"></canvas>
                             </div>
                         </div>
                     </div>
