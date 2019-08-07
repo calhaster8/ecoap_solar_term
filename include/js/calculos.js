@@ -459,35 +459,35 @@ function chartData() {
     }
 
     for (let i = 0; i < totalEnergiaSolarUtilizada.length; i++) {
-        totalEnergiaSolarUtilizada_fixed[i] = totalEnergiaSolarUtilizada[i].toFixed(0);
+        totalEnergiaSolarUtilizada_fixed[i] = totalEnergiaSolarUtilizada[i] / 3.6;
+        totalEnergiaSolarUtilizada_fixed[i] = new Number(totalEnergiaSolarUtilizada_fixed[i].toFixed(0));
     }
 
     for (let i = 0; i < totalEnergiaBackupMes.length; i++) {
-        totalEnergiaBackupMes_fixed[i] = totalEnergiaBackupMes[i].toFixed(0);
+        totalEnergiaBackupMes_fixed[i] = totalEnergiaBackupMes[i] / 3.6;
+        totalEnergiaBackupMes_fixed[i] = new Number(totalEnergiaBackupMes_fixed[i].toFixed(0));
     }
 
-    /*for (let i = 0; i < totalExcedenteSolarArray.length; i++) {
-        totalExcedenteSolarArray_fixed[i] = totalExcedenteSolarArray[i].toFixed(0);
-    }*/
-
     for (let i = 0; i < totalEnergiaArray2.length; i++) {
-        totalEnergiaArray2_fixed[i] = totalEnergiaArray2[i].toFixed(0);
+        totalEnergiaArray2_fixed[i] = totalEnergiaArray2[i] / 3.6;
+        totalEnergiaArray2_fixed[i] = new Number(totalEnergiaArray2_fixed[i].toFixed(0));
     }
 
     for (let i = 0; i < necessidades_mes.length; i++) {
-        necessidades_mes_fixed[i] = necessidades_mes[i].toFixed(0);
+        necessidades_mes_fixed[i] = necessidades_mes[i] / 3.6;
+        necessidades_mes_fixed[i] = new Number(necessidades_mes_fixed[i].toFixed(0));
     }
 
     var maxCustos = maxChart(cenarioI_custos) > maxChart(cenarioF_custos) ? maxChart(cenarioI_custos) : maxChart(cenarioF_custos);
 
-    if ((maxChart(necessidades_mes) > maxChart(totalEnergiaArray2)) && (maxChart(necessidades_mes) > maxChart(totalEnergiaSolarUtilizada)) && (maxChart(necessidades_mes) > maxChart(totalEnergiaBackupMes))) {
-        var maxSolarTerm = maxChart(necessidades_mes);
-    } else if ((maxChart(totalEnergiaArray2) > maxChart(necessidades_mes)) && (maxChart(totalEnergiaArray2) > maxChart(totalEnergiaSolarUtilizada)) && (maxChart(totalEnergiaArray2) > maxChart(totalEnergiaBackupMes))) {
-        var maxSolarTerm = maxChart(totalEnergiaArray2);
-    } else if ((maxChart(totalEnergiaSolarUtilizada) > maxChart(totalEnergiaArray2)) && (maxChart(totalEnergiaSolarUtilizada) > maxChart(necessidades_mes)) && (maxChart(totalEnergiaSolarUtilizada) > maxChart(totalEnergiaBackupMes))) {
-        var maxSolarTerm = maxChart(totalEnergiaSolarUtilizada);
+    if ((maxChart(necessidades_mes_fixed) > maxChart(totalEnergiaArray2_fixed)) && (maxChart(necessidades_mes_fixed) > maxChart(totalEnergiaSolarUtilizada_fixed)) && (maxChart(necessidades_mes_fixed) > maxChart(totalEnergiaBackupMes_fixed))) {
+        var maxSolarTerm = maxChart(necessidades_mes_fixed);
+    } else if ((maxChart(totalEnergiaArray2_fixed) > maxChart(necessidades_mes_fixed)) && (maxChart(totalEnergiaArray2_fixed) > maxChart(totalEnergiaSolarUtilizada_fixed)) && (maxChart(totalEnergiaArray2_fixed) > maxChart(totalEnergiaBackupMes_fixed))) {
+        var maxSolarTerm = maxChart(totalEnergiaArray2_fixed);
+    } else if ((maxChart(totalEnergiaSolarUtilizada_fixed) > maxChart(totalEnergiaArray2_fixed)) && (maxChart(totalEnergiaSolarUtilizada_fixed) > maxChart(necessidades_mes_fixed)) && (maxChart(totalEnergiaSolarUtilizada_fixed) > maxChart(totalEnergiaBackupMes_fixed))) {
+        var maxSolarTerm = maxChart(totalEnergiaSolarUtilizada_fixed);
     } else {
-        var maxSolarTerm = maxChart(totalEnergiaBackupMes);
+        var maxSolarTerm = maxChart(totalEnergiaBackupMes_fixed);
     }
 
     var varCustosChart = new Chart(custosChart, {
@@ -529,9 +529,12 @@ function chartData() {
             },
             title: {
                 display: true,
-                text: 'Custo anual de energia - Sistema de apoio',
+                text: 'Custos Energéticos',
                 fontSize: 16,
                 fontColor: '#0099cc'
+            },
+            legend: {
+                onClick: function (event, legendItem) { }
             }
         }
     });
@@ -578,7 +581,7 @@ function chartData() {
                         beginAtZero: true,
                         max: maxSolarTerm,
                         callback: function (value, index, values) {
-                            return value.toFixed(0) + ' MJ';
+                            return value.toFixed(0) + ' kWh';
                         }
                     }
                 }],
@@ -593,11 +596,12 @@ function chartData() {
             },
             title: {
                 display: true,
-                text: 'Balanço Energético (MJ)',
+                text: 'Balanço Energético (kWh)',
                 fontSize: 16,
                 fontColor: '#0099cc'
             },
             legend: {
+                onClick: function(event, legendItem) {},
                 labels: {
                     useLineStyle: true
                 }
